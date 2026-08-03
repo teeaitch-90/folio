@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: rgb(250,245,237); }
+    a { color: rgb(97,85,245); text-decoration: none; }
+    a:hover { color: rgb(74,62,214); }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes dropIn { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+    .cs-dropdown { position: relative; }
+    nav a { white-space: nowrap; }
+    .cs-menu { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1), visibility .25s; }
+    .cs-dropdown:hover .cs-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .cs-chev { transition: transform .25s ease; }
+    .cs-dropdown:hover .cs-chev { transform: rotate(180deg); }
+    [data-row] { transition: transform .35s cubic-bezier(.22,1,.36,1); will-change: transform; }
+    [data-row]:hover { transform: translateY(-6px); }
+    [data-row] [data-preview] { transition: box-shadow .35s cubic-bezier(.22,1,.36,1), transform .35s cubic-bezier(.22,1,.36,1); }
+    [data-row]:hover [data-preview] { box-shadow: 0 0 0 1px rgb(242,242,247), 0 22px 50px rgba(12,12,13,0.16); transform: scale(1.015); }
+    [data-row] [data-card] span { transition: color .3s ease; }
+    [data-row]:hover [data-card] span { color: rgb(97,85,245); }
+    .site-nav { position: fixed; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 1000; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; pointer-events: none; }
+    .site-nav > nav { pointer-events: auto; }
+    .nav-cta { position: absolute; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 999; display: flex; justify-content: flex-end; pointer-events: none; }
+    .nav-cta > div { pointer-events: auto; }
+  </style>
+</helmet>
+<div style="position: relative; background: rgb(250,245,237); min-height: 100vh; padding: 57px 24px 80px; font-family: Alexandria, sans-serif;">
+  <div style="width: 1164px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
+
+    <div style="height: 92px; flex: none;"></div>
+
+    <!-- Sticky top nav -->
+    <div data-nav class="site-nav">
+      <nav style="display: flex; flex-direction: row; gap: 10px; align-items: center; padding: 8px 20px; background: rgb(255,255,255); border-radius: 30px; box-shadow: 0 4px 14px rgba(12,12,13,0.05);">
+        <a href="#" style="padding: 10px 20px; border-radius: 30px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .25s ease, color .25s ease;">Home</a>
+        <div class="cs-dropdown" style="display: flex; align-items: center;">
+          <a href="./Macquarie.dc.html" style="display: flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">Case studies<svg class="cs-chev" width="13" height="13" viewBox="0 0 12 12" fill="none" style="display: block;"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <div class="cs-menu" style="position: absolute; top: 100%; left: 0; padding-top: 12px; z-index: 50;">
+            <div style="display: flex; flex-direction: column; gap: 2px; background: rgb(255,255,255); border-radius: 16px; box-shadow: 0 14px 36px rgba(12,12,13,0.16); padding: 8px; min-width: 258px;">
+              <a href="./Macquarie.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Macquarie &mdash; Broker Portal</a>
+              <a href="./AtlassianTeams.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Atlassian Teams</a>
+              <a href="./CommBank.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">CommBank Business Onboarding</a>
+              <a href="./Westpac.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0); color: rgb(0,0,0);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Westpac GEL</a>
+            </div>
+          </div>
+        </div>
+        <a href="./About.dc.html" style="padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">About</a>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <div style="display: flex; flex-direction: row; gap: 12px; align-items: center;">
+        <a href="./assets/TimHe_CV_26.pdf" download target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px rgb(97,85,245); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease;" style-hover="background: rgb(238,236,254); transform: translateY(-2px);">Download CV</a>
+        <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease, box-shadow .25s ease;" style-hover="background: rgb(80,68,224); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(97,85,245,0.35);">Connect on <span style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 3px; background: rgb(255,255,255); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 700; font-size: 11px;">in</span></a>
+      </div>
+    </div>
+
+    <!-- Hero panel -->
+    <section data-reveal data-screen-label="Hero" style="margin-top: 49px; width: 100%; border-radius: 38px; background: rgb(255,255,255); display: flex; flex-direction: column; gap: 58px; padding: 62px 68px; box-shadow: 0 10px 40px rgba(12,12,13,0.04); animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .08s;">
+      <div style="width: 665px; max-width: 100%; display: flex; flex-direction: column; gap: 14px;">
+        <h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 64px; line-height: 62px; color: rgb(0,0,0); text-wrap: pretty;">Hi, I&rsquo;m Tim.  Product Designer and builder.</h1>
+        <p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.5; color: rgb(0,0,0); text-wrap: pretty;">Senior Product Designer with 10 years+ experience across tech, finance and healthcare. Delivering and building  solutions through design thinking and AI with real results.</p>
+      </div>
+      <div style="display: flex; flex-direction: row; gap: 27px; flex-wrap: wrap;">
+        <div data-card style="width: 319px; height: 314px; border-radius: 24px; background: rgb(255,232,168); display: flex; flex-direction: column; justify-content: space-between; padding: 20px 26px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s cubic-bezier(.22,1,.36,1);" style-hover="transform: translateY(-8px); box-shadow: 0 18px 40px rgba(12,12,13,0.14);">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: Alexandria, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: rgb(0,0,0);">Recent case studies</span>
+            <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; color: rgb(0,0,0);">Check out my recent case study for Macquarie Broker Portal as I aim to reduce application handling time.</span>
+          </div>
+          <a href="./Macquarie.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">View case study</a>
+        </div>
+        <div data-card style="width: 319px; height: 314px; border-radius: 24px; background: rgb(224,239,255); display: flex; flex-direction: column; justify-content: space-between; padding: 20px 26px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s cubic-bezier(.22,1,.36,1);" style-hover="transform: translateY(-8px); box-shadow: 0 18px 40px rgba(12,12,13,0.14);">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: Alexandria, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: rgb(0,0,0);">Get to know more about me</span>
+            <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; color: rgb(0,0,0);">Blending creative problem solving with complex data mining to back it up is my superpower. </span>
+          </div>
+          <a href="./About.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">Read more about me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent work panel -->
+    <section data-screen-label="Recent work" style="margin-top: 34px; width: 100%; border-radius: 38px; background: rgb(255,255,255); display: flex; flex-direction: column; gap: 38px; padding: 62px 68px; box-shadow: 0 10px 40px rgba(12,12,13,0.04);">
+      <div data-reveal style="width: 665px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .16s;">
+        <h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 40px; line-height: 62px; color: rgb(0,0,0);">Recent work </h2>
+        <p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.5; color: rgb(0,0,0);">These are some of my most recent works that I delivered</p>
+      </div>
+
+      <!-- Work row 1: Macquarie -->
+      <div data-reveal data-row style="display: flex; flex-direction: row; gap: 27px; padding: 12px 0; align-items: flex-start; border-radius: 10px; flex-wrap: wrap; animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .24s;">
+        <div data-card style="width: 319px; border-radius: 24px; background: rgb(255,255,255); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: 20px 0;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="width: 132px; height: 24px; background: url(./assets/macquarie-logo-trim.png) left center / contain no-repeat;"></div>
+            <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 32px; line-height: 40px; color: rgb(0,0,0); white-space: pre-line;">Broker Portal:
+Reducing application handling time</span>
+          </div>
+          <a href="./Macquarie.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">View case study</a>
+        </div>
+        <div data-preview style="flex: 1 1 560px; height: 427px; border-radius: 10px; background: url(./assets/macquarie-preview.png) center top / cover no-repeat; box-shadow: inset 0 0 0 1px rgb(229,229,234);"></div>
+      </div>
+
+      <!-- Work row 2: Atlassian Teams -->
+      <div data-reveal data-row style="display: flex; flex-direction: row; gap: 27px; padding: 12px 0; align-items: flex-start; border-radius: 10px; flex-wrap: wrap; animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .3s;">
+        <div data-card style="width: 319px; border-radius: 24px; background: rgb(255,255,255); display: flex; flex-direction: column; gap: 20px; padding: 20px 0;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: url(./assets/atlassian-icon.png) center / cover no-repeat;"></div>
+          <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 32px; line-height: 40px; color: rgb(0,0,0);">Teams as the organising principle for work across Atlassian apps</span>
+          <a href="./AtlassianTeams.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">View case study</a>
+        </div>
+        <div data-preview style="flex: 1 1 560px; height: 438px; border-radius: 10px; background: url(./assets/teams-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(242,242,247);"></div>
+      </div>
+
+      <!-- Work row 3: CommBank -->
+      <div data-reveal data-row style="display: flex; flex-direction: row; gap: 27px; padding: 12px 0; align-items: flex-start; border-radius: 10px; flex-wrap: wrap; animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .36s;">
+        <div data-card style="width: 319px; border-radius: 24px; background: rgb(255,255,255); display: flex; flex-direction: column; gap: 20px; padding: 20px 0;">
+          <div style="width: 125px; height: 29px; background: url(./assets/commbank-logo-trim.png) left center / contain no-repeat;"></div>
+          <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 32px; line-height: 40px; color: rgb(0,0,0);">Digitisation: Onboarding your business with CommBank</span>
+          <a href="./CommBank.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">View case study</a>
+        </div>
+        <div data-preview style="flex: 1 1 560px; height: 438px; border-radius: 10px; background: url(./assets/cba-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(242,242,247);"></div>
+      </div>
+
+      <!-- Work row 4: Westpac GEL -->
+      <div data-reveal data-row style="display: flex; flex-direction: row; gap: 27px; padding: 12px 0; align-items: flex-start; border-radius: 10px; flex-wrap: wrap; animation: riseIn .7s cubic-bezier(.22,1,.36,1) both; animation-delay: .42s;">
+        <div data-card style="width: 319px; border-radius: 24px; background: rgb(255,255,255); display: flex; flex-direction: column; gap: 20px; padding: 20px 0;">
+          <div style="width: 99px; height: 36px; background: url(./casestudies-westpac/assets/westpac-logo.png) left center / contain no-repeat;"></div>
+          <span style="font-family: Alexandria, sans-serif; font-weight: 400; font-size: 32px; line-height: 40px; color: rgb(0,0,0);">Westpac GEL: Australia&rsquo;s first banking Design System</span>
+          <a href="./Westpac.dc.html" style="display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224);">View case study</a>
+        </div>
+        <div data-preview style="flex: 1 1 560px; height: 438px; border-radius: 10px; background: url(./assets/westpac-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(242,242,247);"></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // Nav is position:fixed and always in view — no scroll logic needed.
+}
+</script>
+</body>
+</html>

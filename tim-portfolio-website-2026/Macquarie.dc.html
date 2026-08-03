@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./casestudies/fig-tokens.css">
+  <link rel="stylesheet" href="./casestudies/fig-assets.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: rgb(250,245,237); }
+    a { color: rgb(97,85,245); text-decoration: none; }
+    .cs-dropdown { position: relative; }
+    nav a { white-space: nowrap; }
+    .cs-menu { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1), visibility .25s; }
+    .cs-dropdown:hover .cs-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .cs-chev { transition: transform .25s ease; }
+    .cs-dropdown:hover .cs-chev { transform: rotate(180deg); }
+  </style>
+</helmet>
+<div style="position: relative; width: 100%; min-height: 100vh; background: rgb(250,245,237); display: flex; justify-content: center;">
+  <div data-nav style="position: fixed; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 1000; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; font-family: Alexandria, sans-serif; pointer-events: none;">
+        <nav style="pointer-events: auto; display: flex; flex-direction: row; gap: 10px; align-items: center; padding: 8px 20px; background: rgb(255,255,255); border-radius: 30px; box-shadow: 0 4px 14px rgba(12,12,13,0.05);">
+          <a href="./index.html" style="padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">Home</a>
+          <div class="cs-dropdown" style="display: flex; align-items: center;">
+          <a href="#" style="display: flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 30px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1;">Case studies<svg class="cs-chev" width="13" height="13" viewBox="0 0 12 12" fill="none" style="display: block;"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <div class="cs-menu" style="position: absolute; top: 100%; left: 0; padding-top: 12px; z-index: 50;">
+            <div style="display: flex; flex-direction: column; gap: 2px; background: rgb(255,255,255); border-radius: 16px; box-shadow: 0 14px 36px rgba(12,12,13,0.16); padding: 8px; min-width: 258px;">
+              <a href="./Macquarie.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0.1); color: rgb(97,85,245);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Macquarie &mdash; Broker Portal</a>
+              <a href="./AtlassianTeams.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0); color: rgb(0,0,0);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Atlassian Teams</a>
+              <a href="./CommBank.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0); color: rgb(0,0,0);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">CommBank Business Onboarding</a>
+              <a href="./Westpac.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0); color: rgb(0,0,0);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Westpac GEL</a>
+            </div>
+          </div>
+        </div>
+          <a href="./About.dc.html" style="padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">About</a>
+        </nav>
+      </div>
+
+      <div style="position: absolute; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 999; display: flex; justify-content: flex-end; pointer-events: none;">
+        <div style="pointer-events: auto; display: flex; flex-direction: row; gap: 12px; align-items: center;">
+          <a href="./assets/TimHe_CV_26.pdf" download target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px rgb(97,85,245); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease;" style-hover="background: rgb(238,236,254); transform: translateY(-2px);">Download CV</a>
+          <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease, box-shadow .25s ease;" style-hover="background: rgb(80,68,224); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(97,85,245,0.35);">Connect on <span style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 3px; background: rgb(255,255,255); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 700; font-size: 11px;">in</span></a>
+        </div>
+      </div>
+  <div style="position: relative; width: {{ fw }}px; height: {{ fh }}px; overflow: hidden;">
+    <div data-scaler style="position: absolute; top: 0; left: 0; width: 1440px; transform-origin: top left; transform: scale({{ scale }});">
+
+      <!-- Cover the frame's baked-in nav, then draw the real working nav -->
+      <div style="position: absolute; top: 0; left: 0; width: 1440px; height: 158px; background: rgb(250,245,237); z-index: 5;"></div>
+      
+      <x-import component-from-global-scope="Macquarie" from="./casestudies/Components.bundle.js" hint-size="1440px,13745px" style="position: relative; width: 1440px;">
+      </x-import>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { scale: 1, fw: 1440, fh: 13745 };
+  componentDidMount() {
+    const scaler = document.querySelector('[data-scaler]');
+    if (!scaler) return;
+    const viewport = scaler.parentElement;
+    const outer = viewport.parentElement;
+    const measure = () => {
+      const cw = outer.clientWidth;
+      const scale = Math.min(1, cw / 1440);
+      const nat = scaler.scrollHeight || 13745;
+      this.setState({ scale, fw: Math.round(1440 * scale), fh: Math.round(nat * scale) });
+    };
+    this._ro = new ResizeObserver(measure);
+    this._ro.observe(outer);
+    this._ro.observe(scaler);
+    [200, 600, 1200, 2500, 4000, 6000].forEach(t => setTimeout(measure, t));
+    window.addEventListener('load', measure);
+  }
+  componentWillUnmount() { if (this._ro) this._ro.disconnect(); }
+  renderVals() { return { scale: this.state.scale, fw: this.state.fw, fh: this.state.fh }; }
+}
+</script>
+</body>
+</html>
