@@ -7580,6 +7580,17 @@ function Macquarie(_p = {}) {
       boxSizing: "border-box"
     }
   }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      flexWrap: "nowrap",
+      flexShrink: 0,
+      alignSelf: "stretch"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
     className: "fig-asset-35088e744b8debf5-cec5d254",
     style: {
       position: "relative",
@@ -7587,7 +7598,28 @@ function Macquarie(_p = {}) {
       height: 44,
       flexShrink: 0
     }
-  }), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.figma.com/proto/nmkFUk8FbAbyKyOOZmvbDY/Portfolio--Case-Study---Macquarie-Requested-Information?page-id=0%3A1&node-id=584-449&p=f&viewport=-4639%2C-1237%2C0.17&t=yMMwLcUDPqz3AzJH-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=584%3A449&show-proto-sidebar=1",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "12px 24px",
+      borderRadius: 4,
+      boxShadow: "inset 0 0 0 1.5px rgb(97,85,245)",
+      color: "rgb(97,85,245)",
+      fontFamily: "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      fontWeight: 600,
+      fontSize: 16,
+      lineHeight: "1",
+      whiteSpace: "nowrap",
+      textDecoration: "none",
+      flexShrink: 0
+    }
+  }, "View full case study")), /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative",
       display: "flex",
