@@ -337576,8 +337576,9 @@ function AtlassianTeams(_p = {}) {
   }, "Results based on roll out to 30% of Paid Enterprise Customers over 1 month - 5% rollout to complex enterprise entities (many teams to consolidate from HRIS)"), /*#__PURE__*/React.createElement(Badge, {
     style: {
       position: "relative",
-      width: 155,
-      height: 36,
+      width: "fit-content",
+      maxWidth: "none",
+      height: "auto",
       flexShrink: 0
     },
     label: "Project measure",
@@ -337611,6 +337612,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",
@@ -337669,6 +337671,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",
@@ -337726,6 +337729,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",
@@ -337795,6 +337799,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",
@@ -337854,6 +337859,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",
@@ -337912,6 +337918,7 @@ function AtlassianTeams(_p = {}) {
     style: {
       position: "relative",
       width: 319,
+      alignSelf: "stretch",
       overflow: "hidden",
       borderRadius: 10,
       boxShadow: "0px 16px 32px -4px rgba(12,12,13,0.1), 0px 4px 4px -4px rgba(12,12,13,0.05)",

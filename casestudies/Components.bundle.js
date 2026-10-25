@@ -7580,17 +7580,6 @@ function Macquarie(_p = {}) {
       boxSizing: "border-box"
     }
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "relative",
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      flexWrap: "nowrap",
-      flexShrink: 0,
-      alignSelf: "stretch"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
     className: "fig-asset-35088e744b8debf5-cec5d254",
     style: {
       position: "relative",
@@ -7598,28 +7587,7 @@ function Macquarie(_p = {}) {
       height: 44,
       flexShrink: 0
     }
-  }), /*#__PURE__*/React.createElement("a", {
-    href: "https://www.figma.com/proto/nmkFUk8FbAbyKyOOZmvbDY/Portfolio--Case-Study---Macquarie-Requested-Information?page-id=0%3A1&node-id=584-449&p=f&viewport=-4639%2C-1237%2C0.17&t=yMMwLcUDPqz3AzJH-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=584%3A449&show-proto-sidebar=1",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: {
-      position: "relative",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "12px 24px",
-      borderRadius: 4,
-      boxShadow: "inset 0 0 0 1.5px rgb(97,85,245)",
-      color: "rgb(97,85,245)",
-      fontFamily: "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
-      fontWeight: 600,
-      fontSize: 16,
-      lineHeight: "1",
-      whiteSpace: "nowrap",
-      textDecoration: "none",
-      flexShrink: 0
-    }
-  }, "View full case study")), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative",
       display: "flex",
@@ -10913,7 +10881,7 @@ function Macquarie(_p = {}) {
       color: "rgb(0,0,0)",
       flexShrink: 0
     }
-  }, "1. ", "Clear and concise explanations"), /*#__PURE__*/React.createElement("span", {
+  }, "2. ", "Clear and concise explanations"), /*#__PURE__*/React.createElement("span", {
     style: {
       position: "relative",
       fontFamily: "Alexandria, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
@@ -10946,7 +10914,7 @@ function Macquarie(_p = {}) {
       color: "rgb(0,0,0)",
       flexShrink: 0
     }
-  }, "1. ", "Ability to upload and add additional commentary to support request"), /*#__PURE__*/React.createElement("span", {
+  }, "3. ", "Ability to upload and add additional commentary to support request"), /*#__PURE__*/React.createElement("span", {
     style: {
       position: "relative",
       fontFamily: "Alexandria, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
@@ -11031,7 +10999,7 @@ function Macquarie(_p = {}) {
       color: "rgb(0,0,0)",
       flexShrink: 0
     }
-  }, "1. ", "Tasks management and notifications for clear broker actions when visiting Macquarie Broker Portal"), /*#__PURE__*/React.createElement("span", {
+  }, "Tasks management and notifications for clear broker actions when visiting Macquarie Broker Portal"), /*#__PURE__*/React.createElement("span", {
     style: {
       position: "relative",
       fontFamily: "Alexandria, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
@@ -14479,7 +14447,7 @@ function Macquarie(_p = {}) {
       color: "rgb(0,0,0)",
       flexShrink: 0
     }
-  }, "1. ", "AI document checker to augment the upload experience"), /*#__PURE__*/React.createElement("span", {
+  }, "AI document checker to augment the upload experience"), /*#__PURE__*/React.createElement("span", {
     style: {
       position: "relative",
       fontFamily: "Alexandria, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
@@ -21772,8 +21740,9 @@ function Macquarie(_p = {}) {
   }, "Comparison data from Q3 March-May")), /*#__PURE__*/React.createElement(Badge, {
     style: {
       position: "relative",
-      width: 155,
-      height: 36,
+      width: "fit-content",
+      maxWidth: "none",
+      height: "auto",
       flexShrink: 0
     },
     label: "Project measure",
@@ -21965,8 +21934,9 @@ function Macquarie(_p = {}) {
   }, "Increase Broker Portal Active Seats increased by 331 (New registered active users)"))))), /*#__PURE__*/React.createElement(Badge, {
     style: {
       position: "relative",
-      width: 165,
-      height: 36,
+      width: "fit-content",
+      maxWidth: "none",
+      height: "auto",
       flexShrink: 0
     },
     label: "Active monitoring",

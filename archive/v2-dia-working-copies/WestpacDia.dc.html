@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Westpac GEL | Tim He</title>
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: rgb(247,246,243); color: rgb(17,17,17); -webkit-font-smoothing: antialiased; }
+    a { color: rgb(17,17,17); text-decoration: none; }
+    a:hover { color: rgb(97,85,245); }
+    ::selection { background: rgba(97,85,245,0.18); }
+    @keyframes blurUp { from { opacity: 0; transform: translateY(22px); filter: blur(12px); } to { opacity: 1; transform: none; filter: blur(0); } }
+    @keyframes aura { 0% { transform: translate(-50%,-50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%,-50%) rotate(180deg) scale(1.08); } 100% { transform: translate(-50%,-50%) rotate(360deg) scale(1); } }
+    @keyframes drift { 0%,100% { transform: translate(0,0) rotate(-14deg); } 50% { transform: translate(60px,-30px) rotate(-8deg); } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes orbitRev { to { transform: rotate(-360deg); } }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes shimmer { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.9); opacity: 0; } }
+    [data-hw] { animation: blurUp 1.2s cubic-bezier(.16,1,.3,1) both; }
+    [data-aura] { animation: aura 48s linear infinite; }
+    [data-leak] { animation: drift 16s ease-in-out infinite; }
+    [data-mq] { animation: marquee 44s linear infinite; }
+    [data-mqwrap]:hover [data-mq] { animation-play-state: paused; }
+    [data-float] { animation: floaty 5s ease-in-out infinite; }
+    [data-ring] { animation: orbit 90s linear infinite; }
+    [data-ring] [data-upright] { animation: orbitRev 90s linear infinite; }
+    [data-ring="b"], [data-ring="b"] [data-upright] { animation-direction: reverse; }
+    [data-pulse] { animation: pulse 2.4s cubic-bezier(.2,.6,.4,1) infinite; }
+    [data-shimmer] { background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+    [data-caret] { animation: blink 1s steps(1) infinite; }
+    .cs-dropdown { position: relative; }
+    .cs-menu { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1), visibility .25s; }
+    .cs-dropdown:hover .cs-menu { opacity: 1; visibility: visible; transform: none; }
+    .cs-chev { transition: transform .25s ease; }
+    .cs-dropdown:hover .cs-chev { transform: rotate(180deg); }
+    [data-bar] { transition: background .4s ease, box-shadow .4s ease; }
+    html[data-scrolled] [data-bar] { background: rgba(247,246,243,0.78); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); box-shadow: 0 1px 0 rgba(17,17,17,0.08); }
+    html[data-js] [data-rv] { opacity: 0; transform: translateY(32px); filter: blur(10px); transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1), filter 1.1s cubic-bezier(.16,1,.3,1); }
+    html[data-js] [data-rv][data-in] { opacity: 1; transform: none; filter: none; }
+    [data-tab] { transition: background .3s ease, color .3s ease, box-shadow .3s ease, opacity .3s ease; }
+    [data-tab][data-on] { background: rgb(255,255,255); color: rgb(17,17,17) !important; box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.05); }
+    [data-tab] [data-prog] { transform: scaleX(0); transform-origin: left center; }
+    [data-tab][data-on] [data-prog] { animation: prog 6s linear forwards; }
+    [data-vtab] { opacity: .45; }
+    [data-vtab][data-on] { opacity: 1; background: transparent; box-shadow: none; }
+    [data-pane] { opacity: 0; transform: scale(1.015); pointer-events: none; transition: opacity .7s ease, transform 1.2s cubic-bezier(.16,1,.3,1); }
+    [data-pane][data-on] { opacity: 1; transform: none; pointer-events: auto; }
+    [data-pan] { transition: background-position .8s ease; }
+    [data-pane][data-on] [data-pan] { background-position: center bottom !important; transition: background-position 5.4s cubic-bezier(.45,0,.55,1) .5s; }
+    [data-wc] [data-wimg] { transition: transform .9s cubic-bezier(.16,1,.3,1), box-shadow .9s ease; }
+    [data-wc]:hover [data-wimg] { transform: translateY(-16px); box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 50px 80px -30px rgba(30,30,60,0.4); }
+    [data-wc] [data-wpan] { transition: background-position 3.6s cubic-bezier(.45,0,.2,1); }
+    [data-wc]:hover [data-wpan] { background-position: center 100%; }
+    [data-wc] [data-go] { transition: transform .5s cubic-bezier(.16,1,.3,1), background .3s ease, color .3s ease; }
+    [data-wc]:hover [data-go] { transform: rotate(-45deg); background: rgb(17,17,17); color: rgb(255,255,255); }
+    [data-spot] { transition: left 1s cubic-bezier(.65,0,.35,1), top 1s cubic-bezier(.65,0,.35,1), width 1s cubic-bezier(.65,0,.35,1), height 1s cubic-bezier(.65,0,.35,1), box-shadow .8s ease; }
+    [data-spot-label] { transition: opacity .4s ease; }
+    [data-trow] { max-height: 96px; overflow: hidden; transition: max-height .5s cubic-bezier(.16,1,.3,1), opacity .35s ease, padding .5s cubic-bezier(.16,1,.3,1), margin .5s ease; }
+    [data-trow][data-hide] { max-height: 0; opacity: 0; padding-top: 0 !important; padding-bottom: 0 !important; }
+    [data-sq][data-empty]::before { content: 'Search'; color: rgb(120,120,128); }
+    [data-lever] [data-track] { background: rgb(220,222,228); transition: background .35s ease; }
+    [data-lever] [data-knob] { transform: translateX(0); transition: transform .35s cubic-bezier(.34,1.4,.64,1); }
+    [data-lever][data-on] [data-track] { background: rgb(12,102,228); }
+    [data-lever][data-on] [data-knob] { transform: translateX(14px); }
+    [data-lever] [data-state]::after { content: 'Off'; }
+    [data-lever][data-on] [data-state]::after { content: 'On'; color: rgb(12,102,228); }
+    [data-lteam] { transition: background .3s ease, color .3s ease, box-shadow .3s ease; }
+    [data-lteam][data-on] { background: rgb(17,17,17); color: rgb(255,255,255) !important; }
+    [data-loop] [data-chip] { opacity: 0; transform: scale(.6) translateY(4px); transition: opacity .35s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+    [data-loop][data-play] [data-chip] { opacity: 1; transform: none; }
+    [data-loop] [data-tnode] { opacity: 0; transform: translateX(-10px); transition: opacity .5s ease, transform .7s cubic-bezier(.16,1,.3,1); }
+    [data-loop][data-play] [data-tnode] { opacity: 1; transform: none; }
+    [data-loop] [data-elbow] { transform: scaleY(0); transform-origin: top center; transition: transform .6s cubic-bezier(.16,1,.3,1); transition-delay: inherit; }
+    [data-loop][data-play] [data-elbow] { transform: none; }
+    [data-loop] [data-st] { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .7s cubic-bezier(.16,1,.3,1); }
+    [data-loop][data-play] [data-st] { opacity: 1; transform: none; }
+    [data-loop] [data-bar2] { transform: scaleX(0); transform-origin: left center; transition: transform 1.5s cubic-bezier(.45,0,.2,1); }
+    [data-loop][data-play] [data-bar2] { transform: none; }
+    [data-loop] [data-fill] { transform: scaleX(0); transform-origin: left center; transition: transform 2.6s cubic-bezier(.45,0,.2,1); }
+    [data-loop][data-play] [data-fill] { transform: none; }
+    [data-loop] [data-vfill] { transform: scaleY(0); transform-origin: top center; transition: transform 3.2s cubic-bezier(.45,0,.2,1); }
+    [data-loop][data-play] [data-vfill] { transform: none; }
+    [data-loop] [data-tick2] { background: rgb(255,255,255) !important; box-shadow: inset 0 0 0 2px rgba(17,17,17,0.25) !important; transition: background .35s ease, box-shadow .35s ease; }
+    [data-loop] [data-tick2] svg { opacity: 0; transform: scale(.4); transition: opacity .3s ease, transform .45s cubic-bezier(.34,1.56,.64,1); transition-delay: inherit; }
+    [data-loop][data-play] [data-tick2] { background: rgb(34,160,107) !important; box-shadow: none !important; }
+    [data-loop][data-play] [data-tick2] svg { opacity: 1; transform: none; }
+    [data-loop][data-play] [data-checking] { animation: checking 1.7s ease both; animation-delay: inherit; }
+    [data-loop] [data-checking] { opacity: 0; }
+    [data-loop][data-reset] *, [data-loop][data-reset] { transition: none !important; animation: none !important; }
+    @keyframes checking { 0% { opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+    [data-spot2] { transition: left .9s cubic-bezier(.65,0,.35,1), top .9s cubic-bezier(.65,0,.35,1), width .9s cubic-bezier(.65,0,.35,1), height .9s cubic-bezier(.65,0,.35,1); }
+    [data-ring2] { transition: stroke-dashoffset 2.2s cubic-bezier(.16,1,.3,1); }
+    @media (max-width: 900px) {
+      [data-g] { grid-template-columns: minmax(0,1fr) !important; }
+      [data-wc] { grid-column: 1 / -1 !important; height: 500px !important; }
+      [data-h1] { font-size: 52px !important; }
+      [data-h2] { font-size: 36px !important; }
+      [data-quote] { font-size: 30px !important; }
+      [data-hide-sm] { display: none !important; }
+      [data-orbit] { zoom: .56; }
+      [data-reel] { height: 340px !important; }
+      [data-sec] { padding-top: 80px !important; padding-bottom: 80px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      html[data-js] [data-rv] { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
+  <script src="../../gate.js"></script>
+</helmet>
+<div style="position: relative; background: rgb(247,246,243); min-height: 100vh; font-family: Geist, sans-serif; color: rgb(17,17,17); overflow-x: clip;">
+<div data-bar style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: center; padding: 14px 32px;">
+  <div style="width: 1200px; max-width: 100%; display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 16px;">
+    <a href="./HomeDia.dc.html" style="justify-self: start; display: flex; align-items: center; gap: 10px; font-family: Geist, sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: rgb(17,17,17); white-space: nowrap;"><svg width="34" height="33" viewBox="0 0 115 112" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tim He" style="display: block;"><path d="M115 102C115 107.523 110.523 112 105 112L10 112C4.47715 112 0 107.523 0 102L0 10C0 4.47716 4.47715 0 10 0L105 0C110.523 0 115 4.47715 115 10L115 102Z" fill="black"/><circle cx="56.96" cy="55.96" r="30.96" stroke="white" stroke-width="2.88"/><path d="M56.9592 53.08L57.0038 86.021" stroke-width="2.88" stroke-linecap="square" stroke="white"/><path d="M39.6809 30.76V80.44" stroke-width="2.88" stroke-linecap="square" stroke="white"/><path d="M73.5208 30.04V79.72" stroke-width="2.88" stroke-linecap="square" stroke="white"/><path d="M39.6797 53.08H73.5197" stroke-width="2.88" stroke-linecap="square" stroke="white"/></svg></a>
+    <nav style="display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 24px -10px rgba(20,20,40,0.18);">
+      <a href="./HomeDia.dc.html" style="padding: 9px 15px; border-radius: 999px; font-family: Geist, sans-serif; font-weight: 500; font-size: 15px; line-height: 1; white-space: nowrap; color: rgb(17,17,17); background: rgba(17,17,17,0); transition: background .25s ease;" style-hover="background: rgba(17,17,17,0.07); color: rgb(17,17,17);">Home</a>
+      <div class="cs-dropdown" style="display: flex;">
+        <a href="./HomeDia.dc.html#work" style="display: flex; align-items: center; gap: 6px; padding: 9px 15px; border-radius: 999px; font-family: Geist, sans-serif; font-weight: 500; font-size: 15px; line-height: 1; white-space: nowrap; color: rgb(17,17,17); background: rgba(17,17,17,0.07); transition: background .25s ease;" style-hover="background: rgba(17,17,17,0.07); color: rgb(17,17,17);">Case studies<svg class="cs-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" style="display: block;"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <div class="cs-menu" style="position: absolute; top: 100%; left: 50%; margin-left: -135px; padding-top: 10px; z-index: 50;">
+          <div style="width: 270px; display: flex; flex-direction: column; gap: 2px; padding: 6px; border-radius: 16px; background: rgba(255,255,255,0.94); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 24px 60px -16px rgba(20,20,40,0.28);">
+            <a href="./AtlassianDia.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 10px; font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; line-height: 1.2; color: rgb(17,17,17); white-space: nowrap; transition: background .2s ease;" style-hover="background: rgba(17,17,17,0.05); color: rgb(17,17,17);">Atlassian Teams</a>
+            <a href="./MacquarieDia.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 10px; font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; line-height: 1.2; color: rgb(17,17,17); white-space: nowrap; transition: background .2s ease;" style-hover="background: rgba(17,17,17,0.05); color: rgb(17,17,17);">Macquarie: Broker Portal</a>
+            <a href="./CommBankDia.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 10px; font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; line-height: 1.2; color: rgb(17,17,17); white-space: nowrap; transition: background .2s ease;" style-hover="background: rgba(17,17,17,0.05); color: rgb(17,17,17);">CommBank Business Onboarding</a>
+            <a href="./WestpacDia.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 10px; font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; line-height: 1.2; color: rgb(17,17,17); white-space: nowrap; transition: background .2s ease;" style-hover="background: rgba(17,17,17,0.05); color: rgb(17,17,17);">Westpac GEL</a>
+          </div>
+        </div>
+      </div>
+      <a href="./AboutDia.dc.html" style="padding: 9px 15px; border-radius: 999px; font-family: Geist, sans-serif; font-weight: 500; font-size: 15px; line-height: 1; white-space: nowrap; color: rgb(17,17,17); background: rgba(17,17,17,0); transition: background .25s ease;" style-hover="background: rgba(17,17,17,0.07); color: rgb(17,17,17);">About</a>
+    </nav>
+    <div style="justify-self: end; display: flex; align-items: center; gap: 6px;">
+      <a data-hide-sm href="../../assets/TimHe_CV_26.pdf" download target="_blank" style="padding: 10px 14px; font-family: Geist, sans-serif; font-weight: 500; font-size: 15px; line-height: 1; color: rgb(17,17,17); white-space: nowrap;" style-hover="color: rgb(97,85,245);">Download CV</a>
+      <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="display: inline-flex; align-items: center; padding: 11px 18px; border-radius: 999px; background: rgb(17,17,17); color: rgb(255,255,255); font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; line-height: 1; white-space: nowrap; transition: background .3s ease;" style-hover="background: rgb(97,85,245); color: rgb(255,255,255);">Connect</a>
+    </div>
+  </div>
+</div>
+
+  
+
+  <section data-screen-label="Hero" style="position: relative; padding: 168px 32px 40px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; overflow: hidden;">
+      <div data-leak style="position: absolute; left: 4%; top: 2%; width: 560px; height: 260px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,232,196,0.95), rgba(255,232,196,0)); filter: blur(18px);"></div>
+      <div data-leak style="position: absolute; right: 2%; top: 14%; width: 460px; height: 220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(226,222,255,0.9), rgba(226,222,255,0)); filter: blur(22px); animation-delay: -6s;"></div>
+      <div data-leak style="position: absolute; left: 34%; top: 30%; width: 380px; height: 160px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,0.9), rgba(255,255,255,0)); filter: blur(16px); animation-delay: -11s;"></div>
+    </div>
+    <div data-hw style="position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(255,255,255,0.8); box-shadow: 0 0 0 1px rgba(0,0,0,0.06); font-family: Geist, sans-serif; font-weight: 500; font-size: 14px; color: rgb(17,17,17);"><span style="margin-left: 8px; width: 96px; height: 28px; background: url(../../casestudies-westpac/assets/westpac-logo.png) center / contain no-repeat;"></span><span style="width: 1px; height: 16px; background: rgba(17,17,17,0.15);"></span>Westpac GEL</div>
+    <h1 data-h1 aria-label="Westpac GEL: Australia&rsquo;s first banking Design System" style="position: relative; margin: 28px 0 0; max-width: 1080px; font-family: Geist, sans-serif; font-weight: 500; font-size: 80px; line-height: 1.03; letter-spacing: -0.05em; color: rgb(17,17,17); display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 0.22em;">
+      <span data-hw style="display: inline-block; animation-delay: 0.10s;">Westpac</span><span data-hw style="display: inline-block; animation-delay: 0.16s;">GEL:</span><span data-hw style="display: inline-block; animation-delay: 0.22s;">Australia&rsquo;s</span><span data-hw style="display: inline-block; animation-delay: 0.28s;">first</span><span data-hw style="display: inline-block; animation-delay: 0.34s;">banking</span><span data-hw style="display: inline-block; animation-delay: 0.40s;">Design</span><span data-hw style="display: inline-block; animation-delay: 0.46s;">System</span>
+    </h1>
+    <div data-hw data-g style="position: relative; margin-top: 48px; width: 880px; max-width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; border-radius: 20px; overflow: hidden; background: rgba(17,17,17,0.08); box-shadow: 0 0 0 1px rgba(17,17,17,0.08); animation-delay: .8s;">
+      <div style="background: rgba(255,255,255,0.75); padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; text-align: left;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Role</span><span style="font-family: Geist, sans-serif; font-size: 16px; line-height: 1.4; color: rgb(17,17,17);">Interaction, UX and UI</span></div><div style="background: rgba(255,255,255,0.75); padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; text-align: left;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Timeline</span><span style="font-family: Geist, sans-serif; font-size: 16px; line-height: 1.4; color: rgb(17,17,17);">2015 Q4 - 9 months</span></div><div style="background: rgba(255,255,255,0.75); padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; text-align: left;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Team</span><span style="font-family: Geist, sans-serif; font-size: 16px; line-height: 1.4; color: rgb(17,17,17);">Me, Lead PD, PM, 2x FE</span></div>
+    </div>
+    
+    <div data-hw style="position: relative; width: 1200px; max-width: 100%; margin-top: 80px; animation-delay: 1.05s;">
+      <div aria-hidden="true" data-aura style="position: absolute; left: 50%; top: 50%; width: 110%; height: 110%; border-radius: 50%; opacity: 1; background: radial-gradient(closest-side at 30% 40%, rgba(97,85,245,0.55), rgba(97,85,245,0) 72%), radial-gradient(closest-side at 72% 34%, rgba(255,128,186,0.45), rgba(255,128,186,0) 72%), radial-gradient(closest-side at 62% 74%, rgba(255,184,116,0.5), rgba(255,184,116,0) 72%), radial-gradient(closest-side at 34% 72%, rgba(110,190,255,0.45), rgba(110,190,255,0) 72%); filter: blur(48px); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 1; border-radius: 24px; padding: 10px; background: rgba(255,255,255,0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 0 0 1px rgba(0,0,0,0.05), 0 50px 120px -40px rgba(50,40,110,0.45);">
+        <div style="border-radius: 16px; overflow: hidden; background: rgb(255,255,255);"><img src="../../casestudies-westpac/assets/043dea0774f39386.png" alt="Westpac GEL across the core site" style="display: block; width: 100%; height: auto;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Overview" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    <div data-g style="display: grid; grid-template-columns: minmax(0,3fr) minmax(0,9fr); gap: 40px;">
+      <div data-rv style="padding-top: 12px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Overview</span></div>
+      <p data-quote style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.3; letter-spacing: -0.03em; color: rgb(17,17,17);"><span data-w style="opacity: 0.16; transition: opacity .2s linear;">Westpac,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">one</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">of</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">Australia's</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">largest</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">financial</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">institutions,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">operates</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">over</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">100</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">digital</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">touchpoints,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">which</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">poses</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">a</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">challenge</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">of</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">inconsistency</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">in</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">their</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">design</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">assets.</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">To</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">address</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">this,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">the</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">Westpac</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">Design</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">Team</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">aimed</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">to</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">create</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">a</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">design</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">language</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">that</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">is</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">scalable,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">reusable,</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">user-friendly</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">and</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">consistent</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">throughout</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">the</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">entire</span> <span data-w style="opacity: 0.16; transition: opacity .2s linear;">organization.</span></p>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="How might we" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    <div data-rv style="position: relative; overflow: hidden; border-radius: 36px; background: rgb(17,17,17); padding: 80px 64px; display: flex; flex-direction: column; gap: 28px;">
+      <div aria-hidden="true" data-aura style="position: absolute; left: 85%; top: 30%; width: 70%; height: 160%; border-radius: 50%; opacity: 0.55; background: radial-gradient(closest-side at 30% 40%, rgba(97,85,245,0.55), rgba(97,85,245,0) 72%), radial-gradient(closest-side at 72% 34%, rgba(255,128,186,0.45), rgba(255,128,186,0) 72%), radial-gradient(closest-side at 62% 74%, rgba(255,184,116,0.5), rgba(255,184,116,0) 72%), radial-gradient(closest-side at 34% 72%, rgba(110,190,255,0.45), rgba(110,190,255,0) 72%); filter: blur(48px); pointer-events: none;"></div>
+      <h2 data-h2 style="position: relative; margin: 0; max-width: 980px; font-family: Geist, sans-serif; font-weight: 500; font-size: 48px; line-height: 1.1; letter-spacing: -0.04em; color: rgb(255,255,255); text-wrap: balance;">In a large financial institution like Westpac, how might we as a design cohort empower our digital delivery teams to speak the same language?</h2>
+      <p style="position: relative; margin: 0; max-width: 820px; font-family: Geist, sans-serif; font-size: 19px; line-height: 1.6; color: rgb(220,218,235); text-wrap: pretty;">The Westpac core site underwent a redesign utilising a systemic approach, designed to function as a multi-brand solution. To fulfil this purpose, Westpac GEL was established as the company's "single source of truth." The GEL prioritizes customer-centric design, ensuring consistent delivery of the Westpac brand across all digital interfaces.</p>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Foundations" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    
+    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
+      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">01</span>
+      <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Foundations</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Laying the foundational components that can facilitate all essential UI interactions across Westpac’s customer facings experiences</h2></div>
+    </div>
+    
+    <div data-g style="display: flex; flex-direction: column; gap: 40px;">
+      <div data-rv style="display: flex; flex-direction: column; gap: 20px; max-width: 720px;"><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">As a outcome, we had developed, constructed, and established governance for our components, making them accessible, understandable, and reusable. This leads to a familiar and user-friendly experience for our customers and provides significant efficiency improvements for our development teams and their stakeholders, allowing for the delivery of consistent, high-quality results and ready-to-code user solutions.</p></div>
+      <div data-rv style="transition-delay: .1s; min-width: 0;"><div data-loupe style="position: relative; border-radius: 24px; background: rgb(255,255,255); padding: 10px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 40px 90px -40px rgba(30,30,60,0.35); cursor: zoom-in;">
+        <img src="../../casestudies-westpac/assets/810f9c1bf21cc396.png" alt="GEL foundational components" style="display: block; width: 100%; height: auto; border-radius: 16px;">
+        <div data-lens style="position: absolute; left: 0; top: 0; width: 220px; height: 220px; border-radius: 50%; pointer-events: none; opacity: 0; transform: translate(-50%,-50%) scale(.6); transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1); background: rgb(255,255,255) url(../../casestudies-westpac/assets/810f9c1bf21cc396.png) no-repeat; box-shadow: 0 0 0 4px rgb(255,255,255), 0 0 0 5px rgba(0,0,0,0.08), 0 24px 50px -16px rgba(20,20,40,0.45);"></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Monitoring" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    
+    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
+      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">02</span>
+      <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Governance</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Monitoring, continuous improvement and iteration</h2></div>
+    </div>
+    
+    <div data-g style="display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 80px; align-items: start;">
+      <div data-rv style="display: flex; flex-direction: column; gap: 20px;"><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">With the introduction of the GUI, there may be instances where components and experiences are inconsistent. It is our responsibility to continuously improve the usability of our extensive collection of components.</p><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">To ensure the success of the GEL design system, governance has been thoroughly documented and its usage rules have been established. However, what sets us apart is our commitment to constant improvement. The GEL is not the final solution for the interface, but rather a starting point for teams to experiment and explore new permutations and enhancements that suit their specific needs. We recognize the limitations of a design system that may limit creativity, and therefore encourage our designers to push the boundaries of the Westpac GUI to add to our growing pattern library.</p></div>
+      <div data-rv style="transition-delay: .1s; min-width: 0;"><div data-loupe style="position: relative; border-radius: 24px; background: rgb(255,255,255); padding: 10px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 40px 90px -40px rgba(30,30,60,0.35); cursor: zoom-in;">
+        <img src="../../casestudies-westpac/assets/e7ece86cd3a61dd9.png" alt="GEL pattern library" style="display: block; width: 100%; height: auto; border-radius: 16px;">
+        <div data-lens style="position: absolute; left: 0; top: 0; width: 220px; height: 220px; border-radius: 50%; pointer-events: none; opacity: 0; transform: translate(-50%,-50%) scale(.6); transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1); background: rgb(255,255,255) url(../../casestudies-westpac/assets/e7ece86cd3a61dd9.png) no-repeat; box-shadow: 0 0 0 4px rgb(255,255,255), 0 0 0 5px rgba(0,0,0,0.08), 0 24px 50px -16px rgba(20,20,40,0.45);"></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Federating" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    
+    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
+      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">03</span>
+      <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Contribution</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Federating the design system to allow teams to contribute</h2></div>
+    </div>
+    
+    <div data-g style="display: flex; flex-direction: column; gap: 40px;">
+      <div data-rv style="display: flex; flex-direction: column; gap: 20px; max-width: 720px;"><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">To ensure the components and patterns, both I and the Lead Designer introduced an ingestion process. The aim of this process is to not only ensure the quality of the components and patterns but also to make the process effortless and engaging for teams to contribute, rather than feeling like a burden.</p><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">Introducing this process keeps the GEL team accountable but also opens up collaboration with the teams that are delivering within their streams.</p></div>
+      <div data-rv style="transition-delay: .1s; min-width: 0;"><div data-loupe style="position: relative; border-radius: 24px; background: rgb(255,255,255); padding: 10px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 40px 90px -40px rgba(30,30,60,0.35); cursor: zoom-in;">
+        <img src="../../casestudies-westpac/assets/099764270f592563.png" alt="GEL ingestion process" style="display: block; width: 100%; height: auto; border-radius: 16px;">
+        <div data-lens style="position: absolute; left: 0; top: 0; width: 220px; height: 220px; border-radius: 50%; pointer-events: none; opacity: 0; transform: translate(-50%,-50%) scale(.6); transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1); background: rgb(255,255,255) url(../../casestudies-westpac/assets/099764270f592563.png) no-repeat; box-shadow: 0 0 0 4px rgb(255,255,255), 0 0 0 5px rgba(0,0,0,0.08), 0 24px 50px -16px rgba(20,20,40,0.45);"></div>
+      </div></div>
+    </div>
+    <div data-rv data-g style="display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 20px; align-items: stretch;">
+      <div style="border-radius: 28px; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05); padding: 48px; display: flex; flex-direction: column; gap: 24px; justify-content: center;">
+        <p style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 30px; line-height: 1.3; letter-spacing: -0.025em; color: rgb(17,17,17); text-wrap: pretty;">&ldquo;Before GEL I could deliver 1-2 projects per year. With GEL I have delivered 8 projects in a year. And has saved a substantial amount of costs within my stream&rdquo;</p>
+        <span style="font-family: Geist, sans-serif; font-size: 15px; color: rgb(96,95,90);">Product Owner</span>
+      </div>
+      <div data-loop style="position: relative; overflow: hidden; border-radius: 28px; background: rgb(17,17,17); padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 28px;">
+        <div aria-hidden="true" data-aura style="position: absolute; left: 90%; top: 90%; width: 120%; height: 160%; border-radius: 50%; opacity: 0.6; background: radial-gradient(closest-side at 30% 40%, rgba(97,85,245,0.55), rgba(97,85,245,0) 72%), radial-gradient(closest-side at 72% 34%, rgba(255,128,186,0.45), rgba(255,128,186,0) 72%), radial-gradient(closest-side at 62% 74%, rgba(255,184,116,0.5), rgba(255,184,116,0) 72%), radial-gradient(closest-side at 34% 72%, rgba(110,190,255,0.45), rgba(110,190,255,0) 72%); filter: blur(48px); pointer-events: none;"></div>
+        
+        <div style="position: relative; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: Geist, sans-serif; font-size: 15px; color: rgb(210,208,225);">Before GEL</span><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 44px; letter-spacing: -0.04em; color: rgb(255,255,255);">1-2</span></div>
+          <div style="height: 10px; border-radius: 5px; background: rgba(255,255,255,0.12); overflow: hidden;"><div data-bar2 style="width: 22%; height: 100%; border-radius: 5px; background: rgba(255,255,255,0.5); transition-delay: 0.3s;"></div></div>
+        </div>
+        <div style="position: relative; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: Geist, sans-serif; font-size: 15px; color: rgb(210,208,225);">With GEL</span><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 44px; letter-spacing: -0.04em; color: rgb(255,255,255);">8</span></div>
+          <div style="height: 10px; border-radius: 5px; background: rgba(255,255,255,0.12); overflow: hidden;"><div data-bar2 style="width: 100%; height: 100%; border-radius: 5px; background: rgb(218,24,48); transition-delay: 0.8s;"></div></div>
+        </div>
+        <span style="position: relative; font-family: Geist, sans-serif; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(190,188,210);">Projects per year</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Impact" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
+    <div data-rv data-loop data-g style="border-radius: 28px; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05); padding: 56px; display: grid; grid-template-columns: auto minmax(0,1fr); gap: 56px; align-items: center;">
+      <div style="position: relative; width: 220px; height: 220px; margin: 0 auto;">
+        <svg width="220" height="220" viewBox="0 0 200 200" style="display: block; transform: rotate(-90deg);"><circle cx="100" cy="100" r="88" fill="none" stroke="rgb(240,238,234)" stroke-width="16"></circle><circle data-ring2 data-to="210.1" cx="100" cy="100" r="88" fill="none" stroke="rgb(218,24,48)" stroke-width="16" stroke-linecap="round" stroke-dasharray="552.9" stroke-dashoffset="552.9"></circle></svg>
+        <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; letter-spacing: -0.05em; color: rgb(17,17,17);"><span data-count data-to="62" data-dec="0" data-pre="" data-suf="%">0%</span></span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Impact of solution</span><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; letter-spacing: -0.02em; color: rgb(17,17,17); text-wrap: pretty;">Within a span of a year, Westpac GEL's assets covered more than 62% of Westpac's currently existing digital touchpoints. Providing consistent journeys for ours customers and paving the way for more efficient delivery of projects for the business</p></div>
+    </div>
+  </section>
+
+  <section data-sec data-screen-label="Contact" style="padding: 40px 32px 120px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    <div data-rv style="position: relative; width: 1200px; max-width: 100%; border-radius: 36px; overflow: hidden; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05); padding: 110px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px;">
+      <div aria-hidden="true" data-aura style="position: absolute; left: 50%; top: 50%; width: 80%; height: 140%; border-radius: 50%; opacity: 0.55; background: radial-gradient(closest-side at 30% 40%, rgba(97,85,245,0.55), rgba(97,85,245,0) 72%), radial-gradient(closest-side at 72% 34%, rgba(255,128,186,0.45), rgba(255,128,186,0) 72%), radial-gradient(closest-side at 62% 74%, rgba(255,184,116,0.5), rgba(255,184,116,0) 72%), radial-gradient(closest-side at 34% 72%, rgba(110,190,255,0.45), rgba(110,190,255,0) 72%); filter: blur(48px); pointer-events: none;"></div>
+      <h2 data-h2 style="position: relative; margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance; max-width: 760px;">Reach out for a detailed walk-through</h2>
+      <div style="position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;"><a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 999px; background: rgb(17,17,17); color: rgb(255,255,255); font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .3s ease, transform .3s ease;" style-hover="background: rgb(97,85,245); color: rgb(255,255,255); transform: translateY(-1px);">Connect on LinkedIn</a><a href="../../assets/TimHe_CV_26.pdf" download target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 999px; background: rgb(255,255,255); color: rgb(17,17,17); box-shadow: inset 0 0 0 1px rgba(17,17,17,0.1); font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1; white-space: nowrap; transition: box-shadow .3s ease, transform .3s ease;" style-hover="color: rgb(17,17,17); box-shadow: inset 0 0 0 1px rgba(17,17,17,0.3); transform: translateY(-1px);">Download CV</a></div>
+    </div>
+    <div data-g style="width: 1200px; max-width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px;">
+      <a data-wc data-rv href="./MacquarieDia.dc.html" style="position: relative; height: 340px; border-radius: 28px; background: rgb(236,234,229); overflow: hidden; padding: 28px; display: flex; flex-direction: column; gap: 8px; color: rgb(17,17,17); transition-delay: 0s;">
+        <span style="position: relative; z-index: 1;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Macquarie</span></span>
+        <span style="position: relative; z-index: 1; font-family: Geist, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.25; letter-spacing: -0.015em; text-wrap: pretty;">Broker Portal: Reducing application handling time</span>
+        <div data-wimg style="position: absolute; left: 28px; right: 28px; bottom: -30px; height: 190px; border-radius: 12px; overflow: hidden; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 20px 40px -20px rgba(30,30,60,0.3);"><div data-wpan style="position: absolute; inset: 0; background: rgb(255,255,255) url(../../assets/macquarie-preview.png) center top / cover no-repeat;"></div></div>
+      </a>
+      <a data-wc data-rv href="./AtlassianDia.dc.html" style="position: relative; height: 340px; border-radius: 28px; background: rgb(226,233,248); overflow: hidden; padding: 28px; display: flex; flex-direction: column; gap: 8px; color: rgb(17,17,17); transition-delay: 0.08s;">
+        <span style="position: relative; z-index: 1;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Atlassian</span></span>
+        <span style="position: relative; z-index: 1; font-family: Geist, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.25; letter-spacing: -0.015em; text-wrap: pretty;">Teams as the organising principle for work across Atlassian apps</span>
+        <div data-wimg style="position: absolute; left: 28px; right: 28px; bottom: -30px; height: 190px; border-radius: 12px; overflow: hidden; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 20px 40px -20px rgba(30,30,60,0.3);"><div data-wpan style="position: absolute; inset: 0; background: rgb(255,255,255) url(../../assets/teams-preview.png) center top / cover no-repeat;"></div></div>
+      </a>
+      <a data-wc data-rv href="./CommBankDia.dc.html" style="position: relative; height: 340px; border-radius: 28px; background: rgb(248,240,212); overflow: hidden; padding: 28px; display: flex; flex-direction: column; gap: 8px; color: rgb(17,17,17); transition-delay: 0.16s;">
+        <span style="position: relative; z-index: 1;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">CommBank</span></span>
+        <span style="position: relative; z-index: 1; font-family: Geist, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.25; letter-spacing: -0.015em; text-wrap: pretty;">Digitisation: Onboarding your business with CommBank</span>
+        <div data-wimg style="position: absolute; left: 28px; right: 28px; bottom: -30px; height: 190px; border-radius: 12px; overflow: hidden; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 20px 40px -20px rgba(30,30,60,0.3);"><div data-wpan style="position: absolute; inset: 0; background: rgb(255,255,255) url(../../assets/cba-screen-v3.png) center top / cover no-repeat;"></div></div>
+      </a>
+    </div>
+  </section>
+    <footer style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 28px 32px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; box-shadow: inset 0 1px 0 rgba(17,17,17,0.08); font-family: Geist, sans-serif; font-size: 14px; color: rgb(96,95,90);">
+      <span>Tim He &middot; Product Designer</span>
+      <div style="display: flex; gap: 22px;">
+        <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">LinkedIn</a>
+        <a href="../../assets/TimHe_CV_26.pdf" download target="_blank" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">CV</a>
+        <a href="./AboutDia.dc.html" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">About</a>
+      </div>
+    </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    var h = document.documentElement; h.setAttribute('data-js', '');
+    var q = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+    var countUp = function (el) {
+      var to = parseFloat(el.getAttribute('data-to')), dec = +(el.getAttribute('data-dec') || 0), pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '';
+      var t0 = Date.now(); var iv = setInterval(function () { var p = clamp((Date.now() - t0) / 1600); var e = 1 - Math.pow(1 - p, 3); el.textContent = pre + (to * e).toFixed(dec) + suf; if (p >= 1) clearInterval(iv); }, 30);
+    };
+    this.tick = function () {
+      var vh = window.innerHeight;
+      if (window.scrollY > 12) h.setAttribute('data-scrolled', ''); else h.removeAttribute('data-scrolled');
+      q('[data-rv]:not([data-in])').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh * 0.9 && r.bottom > 0) { el.setAttribute('data-in', ''); q('[data-count]', el).forEach(countUp); }
+      });
+      q('[data-loop]:not([data-play])').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh * 0.8 && r.bottom > 0) { el.setAttribute('data-play', ''); q('[data-ring2]', el).forEach(function (c) { c.style.strokeDashoffset = c.getAttribute('data-to'); }); }
+      });
+      q('[data-quote]').forEach(function (qq) {
+        var r = qq.getBoundingClientRect();
+        var p = clamp((vh * 0.82 - r.top) / (r.height + vh * 0.3));
+        var ws = q('[data-w]', qq), n = ws.length;
+        ws.forEach(function (w, i) { w.style.opacity = (0.16 + 0.84 * clamp(p * n * 1.2 - i)).toFixed(3); });
+      });
+    };
+    var self = this;
+    this.onScroll = function () { self.tick(); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.boot = setInterval(this.tick, 300);
+    setTimeout(this.tick, 50);
+
+    this.setTab = function (g, i) {
+      q('[data-tab]', g).forEach(function (t) { t.removeAttribute('data-on'); });
+      void g.offsetWidth;
+      q('[data-tab]', g).forEach(function (t) { if (+t.getAttribute('data-tab') === i) t.setAttribute('data-on', ''); });
+      q('[data-pane]', g).forEach(function (p) { if (+p.getAttribute('data-pane') === i) p.setAttribute('data-on', ''); else p.removeAttribute('data-on'); });
+      g._i = i; g._t = Date.now();
+      var sp = g.getAttribute('data-spots'), s2 = g.querySelector('[data-spot2]');
+      if (sp && s2) { var pp = sp.split(';')[i].split(','); s2.style.left = pp[0] + '%'; s2.style.top = pp[1] + '%'; s2.style.width = pp[2] + '%'; s2.style.height = pp[3] + '%'; }
+    };
+    this.tabT = setInterval(function () {
+      q('[data-tabs]').forEach(function (g) {
+        if (!g._init) { g._init = 1; self.setTab(g, 0); return; }
+        var r = g.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) { g._t = Date.now() - (Date.now() - g._t); return; }
+        if (Date.now() - g._t >= 6000) { var n = q('[data-pane]', g).length; self.setTab(g, ((g._i || 0) + 1) % n); }
+      });
+    }, 150);
+    this.onClick = function (e) {
+      var t = e.target.closest && e.target.closest('[data-tab]');
+      if (!t) return;
+      var g = t.closest('[data-tabs]'); if (!g) return;
+      e.preventDefault(); self.setTab(g, +t.getAttribute('data-tab'));
+    };
+    document.addEventListener('click', this.onClick);
+    this.onLoupe = function (e) {
+      var w = e.target.closest && e.target.closest('[data-loupe]');
+      q('[data-loupe]').forEach(function (b) { if (b !== w) { var l0 = b.querySelector('[data-lens]'); if (l0) { l0.style.opacity = '0'; l0.style.transform = 'translate(-50%,-50%) scale(.6)'; } } });
+      if (!w) return;
+      var img = w.querySelector('img'), l = w.querySelector('[data-lens]'), r = img.getBoundingClientRect(), br = w.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top, z = 2.4;
+      if (x < 0 || y < 0 || x > r.width || y > r.height) { l.style.opacity = '0'; return; }
+      l.style.left = (e.clientX - br.left) + 'px'; l.style.top = (e.clientY - br.top) + 'px';
+      l.style.backgroundSize = (r.width * z) + 'px ' + (r.height * z) + 'px';
+      l.style.backgroundPosition = (110 - x * z) + 'px ' + (110 - y * z) + 'px';
+      l.style.opacity = '1'; l.style.transform = 'translate(-50%,-50%) scale(1)';
+    };
+    document.addEventListener('mousemove', this.onLoupe);
+
+    var spots = [
+      { l: 0, t: 0, w: 100, h: 100, label: '' },
+      { l: 21.1, t: 32.9, w: 52, h: 18.4, label: 'About the team' },
+      { l: 21.1, t: 53.2, w: 51.8, h: 46.2, label: 'Members' },
+      { l: 77, t: 32.3, w: 21.4, h: 31.6, label: 'Team links' },
+      { l: 77, t: 65.8, w: 21.4, h: 17.1, label: 'Details' }
+    ];
+    this.si = 0;
+    this.spotT = setInterval(function () {
+      var s = document.querySelector('[data-spot]'); if (!s) return;
+      if (s.getAttribute('data-spots') && !s._parsed) { s._parsed = 1; spots = [{ l: 0, t: 0, w: 100, h: 100, label: '' }].concat(s.getAttribute('data-spots').split(';').map(function (x) { var a = x.split(','); return { l: +a[0], t: +a[1], w: +a[2], h: +a[3], label: a.slice(4).join(',') }; })); self.si = 0; }
+      self.si = (self.si + 1) % spots.length; var p = spots[self.si];
+      s.style.left = p.l + '%'; s.style.top = p.t + '%'; s.style.width = p.w + '%'; s.style.height = p.h + '%';
+      s.style.boxShadow = p.label ? '0 0 0 9999px rgba(16,16,24,0.42), 0 0 0 2px rgb(97,85,245), 0 0 30px 4px rgba(97,85,245,0.35)' : '0 0 0 9999px rgba(16,16,24,0), 0 0 0 2px rgba(97,85,245,0), 0 0 30px 4px rgba(97,85,245,0)';
+      var lb = s.querySelector('[data-spot-label]'); if (lb) { if (p.label) lb.textContent = p.label; lb.style.opacity = p.label ? '1' : '0'; }
+    }, 2800);
+
+    var queries = ['Marketing', 'Customer', 'Creative'];
+    this.S = { q: 0, txt: '', ph: 'rest', n: 0 };
+    this.searchT = setInterval(function () {
+      var inp = document.querySelector('[data-sq]'); if (!inp) return;
+      var S = self.S, target = queries[S.q];
+      if (S.ph === 'type') { if (S.txt.length < target.length) S.txt = target.slice(0, S.txt.length + 1); else { S.ph = 'hold'; S.n = 0; } }
+      else if (S.ph === 'hold') { if (++S.n > 24) S.ph = 'del'; }
+      else if (S.ph === 'del') { if (S.txt.length) S.txt = S.txt.slice(0, -1); else { S.ph = 'rest'; S.n = 0; S.q = (S.q + 1) % queries.length; } }
+      else if (S.ph === 'rest') { if (++S.n > 16) S.ph = 'type'; }
+      inp.textContent = S.txt;
+      if (S.txt) inp.removeAttribute('data-empty'); else inp.setAttribute('data-empty', '');
+      var n = 0;
+      q('[data-trow]').forEach(function (r) {
+        var hit = !S.txt || r.getAttribute('data-trow').toLowerCase().indexOf(S.txt.toLowerCase()) > -1;
+        if (hit) { r.removeAttribute('data-hide'); n++; } else r.setAttribute('data-hide', '');
+      });
+      var c = document.querySelector('[data-tcount]'); if (c) c.textContent = S.txt ? (n + (n === 1 ? ' result' : ' results')) : '68 teams';
+    }, 95);
+
+    this.lt = 0;
+    this.applyLevers = function () {
+      var box = document.querySelector('[data-levers]'); if (!box) return;
+      q('[data-lteam]', box).forEach(function (c) { if (+c.getAttribute('data-lteam') === self.lt) c.setAttribute('data-on', ''); else c.removeAttribute('data-on'); });
+      q('[data-lever]', box).forEach(function (r, i) {
+        var on = ((i * 5 + self.lt * 3 + (i % 3) * self.lt) % 7) < 4;
+        setTimeout(function () { if (on) r.setAttribute('data-on', ''); else r.removeAttribute('data-on'); }, i * 70);
+      });
+    };
+    this.leverT = setInterval(function () { self.lt = (self.lt + 1) % 4; self.applyLevers(); }, 3000);
+    setTimeout(this.applyLevers, 300);
+
+    this.loopT = setInterval(function () {
+      q('[data-loop][data-play]').forEach(function (el) {
+        var r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+        el.setAttribute('data-reset', ''); el.removeAttribute('data-play'); setTimeout(function () { el.removeAttribute('data-reset'); }, 60); setTimeout(function () { el.setAttribute('data-play', ''); }, 700);
+      });
+    }, 11000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('mousemove', this.onLoupe);
+    [this.boot, this.tabT, this.spotT, this.searchT, this.leverT, this.loopT].forEach(clearInterval);
+  }
+}
+</script>
+</body>
+</html>
