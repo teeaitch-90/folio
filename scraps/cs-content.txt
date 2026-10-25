@@ -1,0 +1,330 @@
+
+
+===== Macquarie (def at 308506, seg 665264) =====
+Broker Portal:\nReducing application handling time
+Overview
+When submitting an application on behalf of a client, brokers provide a set of mandatory upfront documents, including financial statements, income details, and identification. During assessment, if discrepancies arise or extra information is needed, an \"outstanding information\" flag is raised on the application. This means the broker must submit further documentation to Macquarie's Credit Assessment Team. This was a chance to make that process intuitive and simple for brokerages.
+Role
+Design strategy, User research, UI and UX
+Timeline
+2024 Q3 - 2 months
+Team
+Me, PM, BA, 2x FE
+Submission
+Mandatory \u2028documents
+Credit assessment
+Requesting additional documents
+Conditional approval
+Formal approval
+Settled
+Home Loan Application Lifecycle (LAL)
+Brokers are required to log into the Broker Portal to review the outstanding information task that is assigned to them. The portal presents messaging to the Broker on a list of documents hat are required of them - that is manually-typed by a credit assessor. 
+As a call-to-action in the portal, the user is able to provide documents to a group inbox that is viewed by the credit-assessor team. Which each document will be manually assessed and classified according to the requested list.
+Brokers can log onto NextGen, a provider that houses the document request capability for Macquarie. NextGen allows the Broker to manually upload their documents as a bulk upload feature which then notifies the credit team to review and classify the documents in NextGen.
+Broker\u2019s are contacted through an automated email, that details that a task requires their attention in the Broker Portal.
+Notified of outstanding information
+Review outstanding information request
+Email documents
+NextGen | ApplyOnline
+Current state
+What we are tackling
+Final designs
+Good (MVP - Milestone 1)
+1. 
+Brokers land on a clear, categorised list of exactly what's outstanding, separated into document requests and clarification requests. Each item shows its status at a glance, so brokers and their clients always know what's done, what's left, and what to tackle next. No more digging through emails or guessing what the Credit Assessment Team needs to move the application forward.
+2. 
+Every request comes with plain-English context: why the information is being asked for and exactly what's acceptable to provide. Instead of vague requests that trigger back-and-forth, brokers get specific guidance up front, reducing errors, resubmissions, and delays in progressing the home loan.
+3. 
+Brokers can upload the required documents directly against each item and attach commentary to give the assessor helpful context. This keeps everything tied to the right request, speeds up assessment, and gives brokers a way to explain any nuances in their client's circumstances without a separate phone call or email.
+Better (Milestone 2)
+Tasks management and notifications for clear broker actions when visiting Macquarie Broker Portal
+Outstanding tasks now appear right on the portal home page, so brokers see what needs actioning the moment they log in. A dedicated tasks list links straight to each application, and real-time notifications flag when more information is required, so nothing sits waiting and clients aren't left wondering. Brokers always know what needs their attention without hunting for it.
+Timothy Bigglesworth
+Home
+Applications
+Existing loans
+Support staff
+Good morning,
+Thursday, 1 June 2023
+Processing times
+Up to 1 hour
+Avg. time to file pickup
+Up to 2 hours
+Avg. time to assessment
+Your applications
+Check all your 
+current active 
+applications
+ submitted through us.
+active
+13
+this month
+20
+this year
+Track your applications
+View all your applications
+Your tasks
+This is list of actions for your applications, that we need to you to action in order to progress. Your currently have 
+ outstanding actions
+. 
+Timothy Igloo
+APP-291324
+Documents reviewed - outstanding information 
+David Blaine
+APP-291323
+Amanda Nunez
+APP-291311
+Your existing loans
+Search 
+all your settled loans
+ and their details in one place.
+56
+76
+total
+Easily 
+access existing loans
+ details
+Search existing loans
+Useful quick links
+List of our frequently used tools by Macquarie brokers.
+Resources
+Calculators, forms, credit policy and more
+Broker help centre
+Search or browse through frequently asked questions
+Valuation ordering
+Request a valuation through CoreLogic
+Feedback
+Today
+Outstanding information
+2:32PM
+We require more supporting information for David Blaine APP-291323
+12:19PM
+We require more supporting information for Timothy Igloo APP-291324
+Best (AI implementation)
+AI document checker to augment the upload experience
+As soon as a document is uploaded, it's automatically reviewed against the specific request, giving brokers instant feedback before it reaches an assessor. The check confirms what's correct, flags anything that doesn't match, and spells out exactly what needs attention, so brokers can fix issues on the spot. This reduces resubmissions, speeds up assessment, and gives brokers confidence their submission is right the first time. It also aligns with a company-wide KPI to meaningfully leverage AI, making this a deliberate step toward embedding AI where it adds real value to the broker experience. All automated checks assist the review process and don't replace manual assessment or credit decisioning.
+Requested information
+Chat with us
+Document request
+Self employed (BAS)
+Clarification request
+Completed
+Why are we asking for this?
+For self employed individuals we require 2 years of individual & trading entity for assessment and i
+What you need to provide
+Provide one of the following: most recent tax return and notice of assessment, OR, most recent ATO income statement (where status indicator is \"Tax Ready\"); OR, 6 months bank statements no older than 60 days evidencing regular salary credits. Ensure account holder details are clearly visible.
+Drag and drop or
+browse files
+Accepted file types include PDF, JPG, PNG. Files should not exceed 30MB. 
+sample-bas.pdf
+2 MB 
+Document review complete
+Thanks for uploading your document. This document was automatically reviewed against the request for self-employed income verification.
+Summary
+All required document types have been uploaded
+Documents are clear and readable
+⚠ Some details don’t match the request
+What needs attention
+To complete this request, we need one update:
+Latest Notice of Assessment required
+ The Notice of Assessment provided is not for the most recent available financial year. Please upload the latest Notice of Assessment to allow us to complete an accurate assessment of income.
+Content verified by MacqGPT. 
+Add additional commentary
+We\u2019re checking the uploaded documents against the request
+Case studies
+Other stuff
+About
+Connect on 
+Reach out for a detailed walk-through
+You can also view this more detailed case study via Figma\rin your own time.\nWhilst you’re here, check out my other case studies. 
+Tale of the tape
+What is the process?
+This process can become cyclical, when broker gather initial documents to build a scenario, but often requiring additional information to further understand and prove that the borrower is able to borrow and sustain the amount they are asking for.
+What are the problems in the process?
+This stage of the application lifecycle is referred to as the \"Outstanding Information\" stage. With emailing being the current primary channel, this has proven to create significant delays in the application process with back and forth exchanging of information between the client and ultimately increases \u2018touches\u2019 per application
+How is it handled today?
+An \"outstanding information\" action is flagged on the client\u2019s application. This indicates that additional documentation must be provided to Macquarie\u2019s Credit Assessment Team in order for the application to progress.
+Brokers are required to log into the Broker Portal to review the outstanding information task that is assigned to them. The portal presents messaging to the Broker on a list of documents hat are required of them - that is manually-typed by a credit assessor or the Broker Support Office. 
+The documents are packaged up and sent as an automated email that goes to the Macquarie General Broker Inbox
+Why is the business in a position to address this?
+We believe
+ by building our own-house capability to surface requested documents from the Credit Assessment team and introduce that ability to self-serve and upload support documents within the Broker Portal...\r
+Will Achieve
+ a major step in our strategic goals in building efficiencies the application process in reducing the number of reworks and increasing the likelihood of cleaner application submissions. Whilst also minimising our portal dependencies on third party providers and operation run-costs for the business.
+Current solution is 
+costly ($1.12M per year)
+, where a third-party application is used to support the capability for Brokers to upload and provide information.
+Our highest call driver to our in-bound Broker Support Offices is regarding Advised Outstanding Documents, with sub-tracking in Salesforce suggesting 75% of those calls are around reasoning, and providing more clarity around the requests,
+🤝
+ Reduce run-cost to Porta
+ Reduce
+ in-bound call volumes
+Application Average Handling Time of 8 days\nAverage Application Rework time of 2.7x times. \nHighest call enquires with Advise on Outstanding Actions (42% overall calls)
+\uD83E\uDD1D Cleaner submit-to-settle
+\uD83E\uDD1D Reduce our Application AHT
+As a tracking metric, the broker is measured by:
+ Adoption of
+ self-serve capabilitie
+ Increase
+ portal engagement
+Steps we got to our solution
+Alignment and universal understanding
+The purpose of this was to align the product team with the \u2028key stakeholders on the purpose, our OKRs that\u2019s been set as part of business\u2019s strategy, the early agreed scope (Primary and secondary goals) but more importantly, the customer problem statements we generated on as a group.
+• 
+Intent: Voice of the stakeholder, Shared understanding for product, Build product confidence and relieve any ambiguity
+Cross team collaboration that will reduce \u2028application rework
+Ideation workshop
+Based on our framing, I facilitated an  ideation session to provide an opportunity for working group present their own take on how the solution can be fitted into the Broker experience.
+Design participants
+Stakeholders
+Product team
+Reviewing real-application data
+Understand how current application data is populated for Brokers to see. 
+Is this content comprehendible and what formatting is used in it by Credit and Broker Support Teams
+Credit team and SME collaboration
+Facilitating conversations with Credit teams and BSO teams to assist in defining the practical examples that would represent real life applications.
+Uncovering the limitations of PEGA system around document classifications (document headings) and how they can be formatted to be more understandable.
+Validating our proposed solution
+Design Sparring
+Research planning
+Moderated sessions
+How our findings informed our design recommendations to improve the experience
+Focused based experience
+Being upfront with the request but giving flexibility for Brokerages to give that extra bit of context - let\u2019s get it right altogether
+Working with the credit team and presenting those finding to them sparking exercises to tie/map primary actions to each document classification
+Impact of solution
+Using pre-defined measures and seeing if our assumptions were correct
+Numbers are based off a 15% pilot - 222 brokerages across NSW, QLD, VIC* 
+Comparison data from Q3 March-May
+Increase volume of Clean Applications up +27% [56] 
+Overall call volumes down -12%. Call volumes down -25% related enquiries\u2028Advised Outstanding Documents 
+Increase Broker Portal Active Seats increased by 331 (New registered active users)
+Continuous data collection on most enquired request types to measure and inform the quality of broker notes and apply modular upload/clarify options
+Move away from NextGen Apply Online saving the business $1.12M per year in license renewal
+--- IMGS ---
+assets/mac-lal-diagram.png
+assets/mac-dashboard.png
+assets/mac-doc-review.png
+
+===== CBA (def at 16818, seg 78162) =====
+Digitisation: Onboarding your business with CommBank
+Overview
+An Australian banking first digital application that allows business customers to 'onboard' their business, directors and beneficial owners as well as originate their product with CommBank. All through a seamless and intuitive digital application known as Project Path.
+Role
+User research,  UI and UX
+Timeline
+2018 Q1 - 3 months
+Team
+Me, PM, BA, 2x BE, 4x FE
+Home
+Case studies
+Other stuff
+About
+Connect on 
+The current landscape of starting a business transaction account with CommBank
+Complex paper-based applications (up to 50 pages) and business rules often lead to rework from human error and miscommunication.
+Journey mapping to help stakeholders understand how cumbersome and slow, opening a business account with CBA is currently - businesses\u2019 shouldn\u2019t need to wait up to a week to start transacting with their customers.
+How our customers feel about CommBank Business services, using existing feedback loops 
+No digital self-service
+Time-consuming
+Miscommunication
+More customer effort
+... as well as from our frontline branch staff who process business customer requests everyday
+Error-prone processes
+Duplicated process
+Hindrance
+Our bet
+By digitising the onboarding application for businesses, both staff and customers will be provided with a guided and easy streamlined onboarding experience. Ensuring that data collection is simple, complete, accurate and compliant - will allow business customers to be product-ready sooner for them to focus on their running their business. 
+Creating a robust origination pattern ...
+We identified the need to link customers' business accounts to other CBA products and provide a seamless and intuitive origination experience. However, the existing origination UI framework was inadequate to handle a lengthy and intricate flow.\r\n\r\nTherefore, there was a pressing design requirement to create a new, advanced origination framework, now referred to as \"Path\" by CommBank product teams. The framework is characterized by its modular design that allows for easy modification, addition, and customization of flows based on the product chosen by the business customer.
+The BCO project was able to pave the way for a complex origination  pattern that the CBA design library was missing. A whole new pattern was documented and created for the wider \u2028design team to utilise in their project. e.g. Home Loans applications and insurance applications.
+... and differentiating between simple and complex application flows
+The current CommBank origination process utilized a conversational interaction framework known as Typeform, which presented questions one at a time, allowing customers to progress through simple questions in a single session.
+Bringing Path into CBA Design Ecosystem
+The Path origination pattern was introduced not only as a new onboarding solution for the bank, but also as a comprehensive design that was integrated into CBA's design system, Honeycomb. This made it possible for other teams to easily incorporate the pattern into their own experiences, such as Home Loans and Lending.\r\n\r\nAs the designer of the Path UI framework, sharing this new capability with other product teams across the business opened up new opportunities for streamlining their own experiences but also having more consistent experiences across the bank ever-growing digital channels.\r\n\r\nActions: Design speccing on interaction, creating playbook, Figma componentisation, Front-end QA, Capability roadshow.
+Iterations and visual improvements for added customer delight
+The Path Origination pattern underwent constant iterations and improvements to make it both visually appealing and intuitive. As a result, it evolved into a robust and stronger interaction pattern. 
+I also conceptualised how Path would be able to accommodate complex  application experiences like CBA's new proposed Home Loan origination  products i.e. capturing expenses, property details, digital assistants  with lending specialists
+My design process
+Through the process we focused heavily on aligning stakeholders and conceptualizing our ideas effectively. Starting from understanding the problem, gathering information, and defining the project scope. We conducted ideation sessions with our stakeholders and SMEs during this crucial stage of the design process to understand their perspectives and ideas that can be incorporated, leading to a solution that is more closely aligned with their needs and expectations.\r\n\r\nGoing down a more structured design process helps to break down complex problems into manageable parts and provides a clear framework for thinking through different solutions. \r\n\r\nEducating and also creating transparency on the design roadmap was key to building effective relationships within the encompassing product teams.
+Immerse and ideate
+At the start of our discovery phase, our team came together to determine the critical elements of our business and establish a clear direction for our efforts. During this time, each team member recorded their insights in the form of \"How Might We\" statements. These statements were then grouped into overarching themes, providing us with a set of key opportunity areas to explore further during the ideation phase. The process of refining and categorizing our observations allowed us to focus our efforts and provided a solid foundation for our creative problem-solving efforts.
+To further refine our solution, we provided the team with an opportunity to vote on the idea they believed would offer the most impactful solution. This approach allowed us to narrow down our options and focus on the most promising ideas, ensuring that our efforts are directed towards creating a solution that will have the greatest impact for our customers.
+Top ideas generated
+Empower our frontline
+Guide the branch conversation - \"Triage\" empower our banking staff with the ability to guide the conversation with potential business customers. i.e. early training, involving them in early piloting.
+Utilise our digital assistants
+Leverage existing Digital Assistant channels, i.e. Chatbot, Online chat with a business banker where are potential roadblocks in the application process. 
+Automated onboarding experience for involved parties
+Nudging involved parties who haven't been identified and the capability to speed up the KYC (Know Your Customer) process.
+Consistent experience for both our end users
+Consistent UI for Customer Verification Staff (Internal team) to have a similar UI application as a customer for easy walkthrough and communication
+Meaningful cross-sell
+Provide meaningful cross-sell during end-to-end application by bundling merchant terminals and branch transactions.
+Set expectations and timeframes
+Always provide the next steps with a status tracker that allows customers to leave the application and then returned to guide them where they left off.
+As the sprint team, we refined our top ideas and ended the day by building end-to-end customer journeys utilising the top ideas/concepts generated in the ideation workshops. We formed individual groups to construct what this might look like as a holistic service journey.\r\n\r\nFrom a business perspective, we refined the data requirements for both customers and the Customer Verification Staff. During the customer onboarding process, we streamlined the verification process by eliminating the need for duplicate data capture over the phone.
+Research planning and concept testing
+The design team worked closely with the research team to develop a research plan for the product team's upcoming customer testing. We also finalised the scenario that would be used as a basis for the testing, making sure all relevant ideas and concepts were integrated into a coherent narrative.\r
+Storybook concept tested with 8 business banking customers. Despite initial preference for in-person account opening (due to document sighting requirements), participants preferred applying online after experiencing the prototype. The process was perceived as easy, straightforward, and seamless.
+During cadence testing, we invited the scrum to attend viewing sessions throughout the day. This allowed our team and stakeholders to see customer feedback firsthand on features proposed during BCO ideation workshops. We also facilitated active listening sessions where they could contribute observations to our testing hypotheses.
+How was the concepts received
+User testing generated strongly positive reactions across all participants. Common themes were the simplicity of completing the process independently, the straightforward questions, and surprise at how fast the experience felt. Several participants were also open to bundling the application with other business tools for a more complete origination experience. Key insights that shaped our content and interaction design:
+Terminology and language - Language felt too \"banky\"; needed a more customer-friendly tone for new business owners.
+Navigation - 
+Could the timeline side panel double as a way to navigate between sections 
+Saving progress - 
+Users wanted a clear way to return to an in-progress application.
+Finance sector questions —
+ Appetite for contextual tooltips, including surfacing CEBA (digital assistant) where relevant.
+Transparency — 
+Users wanted to know when accounts would be active, and an upfront checklist of what's needed before starting.
+A \"last check\" step —
+ Given the application's length, participants wanted to review their details before submitting.
+Interactions and cadence testing
+After conducting several rounds of testing with business customers, we emphasized the following key areas:
+Streamlining language and minimising the use of banking jargon, as well as providing clarification when uncertainty arises.
+Improving the ease of navigation and reducing the number of errors by simplifying interface elements.
+Ensuring that digital assistance is readily available when needed and that it is provided by a human, as customers expressed a preference for chatbots, which they felt were not intelligent enough.
+Provide an avenue for staff to be able to access to acquire information readily i.e. help centre, application experts
+Impact of solution
+The Business Customer Onboarding initiative resulted in a more positive experience for both customers and internal processing staff, leading to increased sales. It also introduced a new interaction pattern that provides a digital-wide efficiency gain for the entire design team and its associated product teams.
+24%+ Completed Business Transactions Account registrations and creations
+32% Increase in cross-sell and bundled business product applications (e.g. merchant terminals, business credit cards)
+~17 Minutes Average time to complete and onboard business and set up a business profile with CBA
+~10 Minutes Average time for directors and beneficial owners to onboard and complete profiles \n12% of click-throughs to cross-app objects (Jira, Confluence, Loom)
+Reach out for a detailed walk-through
+You can also view this more detailed case study via Figma\rin your own time.\nWhilst you’re here, check out my other case studies. 
+--- IMGS ---
+
+
+===== Westpac (def at 8293, seg 25823) =====
+Westpac GEL: Australia's first banking Design System
+Overview
+Westpac, one of Australia's largest financial institutions, operates over 100 digital touchpoints, which poses a challenge of inconsistency in their design assets. To address this, the Westpac Design Team aimed to create a design language that is scalable, reusable, user-friendly and consistent throughout the entire organization.
+Role
+Interaction, UX and UI
+Timeline
+2015 Q4 -  9 months
+Team
+Me, Lead PD, PM, 2x FE
+Home
+Case studies
+Other stuff
+About
+Connect on 
+In a large financial institution like Westpac, how might we as a design cohort empower our digital delivery teams to speak the same language? 
+The Westpac core site underwent a redesign utilising a systemic approach, designed to function as a multi-brand solution. To fulfil this purpose, Westpac GEL was established as the company's \"single source of truth.\" The GEL prioritizes customer-centric design, ensuring consistent delivery of the Westpac brand across all digital interfaces.\r
+Laying the foundational components that can facilitate all essential UI interactions across Westpac\u2019s customer facings experiences
+As a outcome, we had developed, constructed, and established governance for our components, making them accessible, understandable, and reusable. This leads to a familiar and user-friendly experience for our customers and provides significant efficiency improvements for our development teams and their stakeholders, allowing for the delivery of consistent, high-quality results and ready-to-code user solutions.\r
+Monitoring, continuous improvement and iteration
+With the introduction of the GUI, there may be instances where components and experiences are inconsistent. It is our responsibility to continuously improve the usability of our extensive collection of components.\r\n\r\nTo ensure the success of the GEL design system, governance has been thoroughly documented and its usage rules have been established. However, what sets us apart is our commitment to constant improvement. The GEL is not the final solution for the interface, but rather a starting point for teams to experiment and explore new permutations and enhancements that suit their specific needs. We recognize the limitations of a design system that may limit creativity, and therefore encourage our designers to push the boundaries of the Westpac GUI to add to our growing pattern library.
+Federating the design system to allow teams to contribute 
+To ensure the components and patterns, both I and the Lead Designer introduced an ingestion process. The aim of this process is to not only ensure the quality of the components and patterns but also to make the process effortless and engaging for teams to contribute, rather than feeling like a burden.\r\nIntroducing this process keeps the GEL team accountable but also opens up collaboration with the teams that are delivering within their streams. 
+Impact of solution
+Within a span of a year, Westpac GEL's assets covered more than 62% of Westpac's currently existing digital touchpoints. Providing consistent journeys for ours customers and paving the way for more efficient delivery of projects for the business
+Reach out for a detailed walk-through
+You can also view this more detailed case study via Figma\rin your own time.\nWhilst you’re here, check out my other case studies. 
+--- IMGS ---
+casestudies-westpac/assets/westpac-logo.png
+casestudies-westpac/assets/wpc-quote.png

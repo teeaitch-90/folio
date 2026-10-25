@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: rgb(250,245,237); }
+    a { color: rgb(97,85,245); text-decoration: none; }
+    a:hover { color: rgb(74,62,214); }
+    @keyframes wordUp { from { transform: translateY(110%); } to { transform: translateY(0); } }
+    @keyframes pillGrow { from { width: 0; opacity: 0; } to { width: 1.55em; opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    .cs-dropdown { position: relative; }
+    nav a { white-space: nowrap; }
+    .cs-menu { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1), visibility .25s; }
+    .cs-dropdown:hover .cs-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .cs-chev { transition: transform .25s ease; }
+    .cs-dropdown:hover .cs-chev { transform: rotate(180deg); }
+    .site-nav { position: fixed; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 1000; display: flex; align-items: center; pointer-events: none; }
+    .site-nav > nav { pointer-events: auto; }
+    .nav-cta { position: absolute; top: 32px; left: 50%; transform: translateX(-50%); width: 1164px; max-width: calc(100% - 48px); z-index: 999; display: flex; justify-content: flex-end; pointer-events: none; }
+    .nav-cta > div { pointer-events: auto; }
+    [data-work] { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; }
+    [data-entry] { min-height: 72vh; display: flex; flex-direction: column; justify-content: center; gap: 22px; transition: opacity .5s ease; }
+    html[data-js] [data-entry] { opacity: .32; }
+    html[data-js] [data-entry][data-on] { opacity: 1; }
+    [data-entry] [data-inline-shot] { display: none; }
+    [data-shot] { opacity: 0; transform: scale(1.06); clip-path: inset(0 0 100% 0); transition: opacity .6s ease, transform 1.2s cubic-bezier(.16,1,.3,1), clip-path .9s cubic-bezier(.16,1,.3,1); }
+    [data-shot][data-on] { opacity: 1; transform: scale(1); clip-path: inset(0 0 0 0); }
+    [data-frame] [data-shot] > div { transition: background-position 3.2s cubic-bezier(.45,0,.2,1); }
+    [data-frame]:hover [data-shot][data-on] > div { background-position: center bottom; }
+    [data-bubble] { opacity: 0; transform: translate(-50%, -50%) scale(.4); transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1); }
+    [data-frame]:hover [data-bubble] { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    [data-tick] { transition: background .4s ease, flex-grow .5s cubic-bezier(.16,1,.3,1); }
+    [data-tick][data-on] { background: rgb(97,85,245) !important; flex-grow: 3 !important; }
+    [data-arrow] { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+    a:hover [data-arrow] { transform: translateX(4px); }
+    html[data-js] [data-sr] { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    html[data-js] [data-sr][data-in] { opacity: 1; transform: none; }
+    html[data-layout="cards"] [data-layout-sec="sticky"] { display: none !important; }
+    html[data-layout="sticky"] [data-layout-sec="cards"] { display: none !important; }
+    [data-track] { scrollbar-width: none; }
+    [data-track]::-webkit-scrollbar { display: none; }
+    [data-card2] [data-panel] { transition: transform .6s cubic-bezier(.16,1,.3,1), background-position 3s cubic-bezier(.45,0,.2,1), box-shadow .6s ease; }
+    [data-card2]:hover [data-panel] { transform: translateY(-10px) scale(1.03); background-position: left bottom; box-shadow: 0 0 0 1px rgba(255,255,255,0.24), 0 36px 70px rgba(0,0,0,0.4); }
+    [data-card2]:hover [data-arrow] { transform: translateX(4px); }
+    [data-nav-btn][disabled] { opacity: .35; cursor: default; }
+    body { overflow-x: clip; }
+    html[data-cardstyle="glass"] [data-layout-sec="cards"] { background: rgb(12,12,14); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 104px calc(50vw - 50%) 112px !important; margin-bottom: 96px; }
+    html[data-cardstyle="glass"] [data-sec-ink] { color: rgb(255,255,255) !important; }
+    html[data-cardstyle="glass"] [data-layout-sec="cards"] p[data-sec-ink] { color: rgb(196,196,204) !important; }
+    html[data-cardstyle="glass"] [data-nav-btn] { background: rgba(255,255,255,0.08) !important; color: rgb(255,255,255) !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16) !important; backdrop-filter: blur(12px); }
+    html[data-cardstyle="glass"] [data-nav-btn]:hover { background: rgb(255,255,255) !important; color: rgb(0,0,0) !important; }
+    html[data-cardstyle="glass"] [data-progress-track] { background: rgba(255,255,255,0.14) !important; }
+    html[data-cardstyle="glass"] [data-progress] { background: rgb(255,255,255) !important; }
+    html[data-cardstyle="glass"] [data-card2] { background: rgb(20,20,23) !important; color: rgb(255,255,255) !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+    html[data-cardstyle="glass"] [data-orb], html[data-cardstyle="glass"] [data-fade] { display: block !important; }
+    html[data-cardstyle="glass"] [data-orb] { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+    html[data-cardstyle="glass"] [data-card2]:hover [data-orb="a"] { transform: translate(40px, 30px) scale(1.1); }
+    html[data-cardstyle="glass"] [data-card2]:hover [data-orb="b"] { transform: translate(-30px, -40px) scale(1.15); }
+    html[data-cardstyle="glass"] [data-glass] { top: 40px !important; padding: 0 10px 10px; border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05)); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), inset 0 1px 0 rgba(255,255,255,0.3), 0 30px 60px rgba(0,0,0,0.45); transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    html[data-cardstyle="glass"] [data-glass-head] { display: flex !important; }
+    html[data-cardstyle="glass"] [data-panel] { border-radius: 9px !important; box-shadow: 0 0 0 1px rgba(255,255,255,0.12) !important; }
+    html[data-cardstyle="glass"] [data-card2]:hover [data-glass] { transform: translateY(-10px); }
+    html[data-cardstyle="glass"] [data-card2]:hover [data-panel] { transform: none; }
+    html[data-cardstyle="glass"] [data-ink] { color: rgb(255,255,255) !important; }
+    html[data-cardstyle="glass"] [data-sub] { color: rgb(178,178,188) !important; }
+    @media (prefers-reduced-transparency: reduce) { html[data-cardstyle="glass"] [data-glass] { background: rgb(40,40,46); backdrop-filter: none; -webkit-backdrop-filter: none; } }
+    @media (max-width: 900px) {
+      [data-card2] { flex-basis: 82% !important; height: 500px !important; }
+      [data-work] { grid-template-columns: minmax(0, 1fr); gap: 0; }
+      [data-sticky] { display: none !important; }
+      [data-entry] { min-height: 0; padding: 32px 0; }
+      html[data-js] [data-entry] { opacity: 1; }
+      [data-entry] [data-inline-shot] { display: block; }
+      [data-hero-h1] { font-size: 54px !important; }
+      [data-about] { grid-template-columns: minmax(0, 1fr) !important; padding: 48px 32px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      html[data-js] [data-sr] { opacity: 1; transform: none; }
+    }
+  </style>
+  <script src="./gate.js"></script>
+</helmet>
+<div style="position: relative; background: rgb(250,245,237); min-height: 100vh; padding: 57px 24px 48px; font-family: Alexandria, sans-serif;">
+  <div style="width: 1164px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
+    <!-- Sticky top nav -->
+    <div data-nav class="site-nav">
+      <nav style="display: flex; flex-direction: row; gap: 10px; align-items: center; padding: 8px 20px; background: rgb(255,255,255); border-radius: 30px; box-shadow: 0 4px 14px rgba(12,12,13,0.05);">
+        <a href="./index.html" style="padding: 10px 20px; border-radius: 30px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .25s ease, color .25s ease;">Home</a>
+        <div class="cs-dropdown" style="display: flex; align-items: center;">
+          <a href="./Macquarie.dc.html" style="display: flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">Case studies<svg class="cs-chev" width="13" height="13" viewBox="0 0 12 12" fill="none" style="display: block;"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <div class="cs-menu" style="position: absolute; top: 100%; left: 0; padding-top: 12px; z-index: 50;">
+            <div style="display: flex; flex-direction: column; gap: 2px; background: rgb(255,255,255); border-radius: 16px; box-shadow: 0 14px 36px rgba(12,12,13,0.16); padding: 8px; min-width: 258px;">
+              <a href="./Macquarie.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Macquarie &mdash; Broker Portal</a>
+              <a href="./AtlassianTeams.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Atlassian Teams</a>
+              <a href="./CommBank.dc.html" style="padding: 13px 16px; border-radius: 10px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease;" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">CommBank Business Onboarding</a>
+              <a href="./Westpac.dc.html" style="padding: 13px 16px; border-radius: 10px; font-family: Inter, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; white-space: nowrap; transition: background .2s ease, color .2s ease; background: rgba(97,85,245,0); color: rgb(0,0,0);" style-hover="background: rgba(97,85,245,0.1); color: rgb(97,85,245);">Westpac GEL</a>
+            </div>
+          </div>
+        </div>
+        <a href="./About.dc.html" style="padding: 10px 20px; border-radius: 30px; background: rgba(97,85,245,0); color: rgb(0,0,0); font-family: Inter, sans-serif; font-weight: 500; font-size: 18px; line-height: 1; transition: background .35s ease, color .35s ease;" style-hover="background: rgba(97,85,245,0.12); color: rgb(97,85,245);">About</a>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <div style="display: flex; flex-direction: row; gap: 12px; align-items: center;">
+        <a href="./assets/TimHe_CV_26.pdf" download target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px rgb(97,85,245); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease;" style-hover="background: rgb(238,236,254); transform: translateY(-2px);">Download CV</a>
+        <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease, transform .25s ease, box-shadow .25s ease;" style-hover="background: rgb(80,68,224); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(97,85,245,0.35);">Connect on <span style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 3px; background: rgb(255,255,255); color: rgb(97,85,245); font-family: Inter, sans-serif; font-weight: 700; font-size: 11px;">in</span></a>
+      </div>
+    </div>
+
+
+    <section data-screen-label="Hero" style="padding: 176px 0 120px; display: flex; flex-direction: column; gap: 40px;">
+      <h1 data-hero-h1 aria-label="Hi, I&rsquo;m Tim. Product Designer and builder." style="margin: 0; max-width: 1040px; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 96px; line-height: 1; letter-spacing: -0.035em; color: rgb(0,0,0); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.24em; row-gap: 6px;">
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.15s;">Hi,</span></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.22s;">I&rsquo;m</span></span>
+        <span aria-hidden="true" style="display: inline-block; width: 1.55em; height: 0.82em; border-radius: 999px; background: rgb(255,255,255) url(./assets/tim-avatar.jpg) 57% 46% / 138% auto no-repeat; box-shadow: inset 0 0 0 4px rgb(97,85,245); animation: pillGrow .9s cubic-bezier(.16,1,.3,1) both; animation-delay: .55s;"></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.29s;">Tim.</span></span>
+        <span style="flex-basis: 100%; height: 0;"></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.36s; color: rgb(97,85,245);">Product</span></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.43s; color: rgb(97,85,245);">Designer</span></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.5s;">and</span></span>
+        <span style="display: inline-block; overflow: hidden; padding-bottom: 6px;"><span style="display: inline-block; animation: wordUp 1s cubic-bezier(.16,1,.3,1) both; animation-delay: 0.57s;">builder.</span></span>
+      </h1>
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; animation: fadeUp .9s cubic-bezier(.16,1,.3,1) both; animation-delay: .8s;">
+        <p style="margin: 0; max-width: 560px; font-family: Alexandria, sans-serif; font-weight: 300; font-size: 21px; line-height: 1.55; color: rgb(0,0,0); text-wrap: pretty;">Senior Product Designer with 10 years+ experience across tech, finance and healthcare. Delivering and building solutions through design thinking and AI with real results.</p>
+        <a href="#work" style="display: inline-flex; align-items: center; gap: 12px; font-family: Inter, sans-serif; font-weight: 600; font-size: 17px; color: rgb(0,0,0); padding: 14px 0; box-shadow: inset 0 -2px 0 rgb(0,0,0); transition: color .25s ease, box-shadow .25s ease;" style-hover="color: rgb(97,85,245); box-shadow: inset 0 -2px 0 rgb(97,85,245);">See recent work<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block; transform: rotate(90deg);"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+    </section>
+
+    <div id="work" style="scroll-margin-top: 120px;">
+    <section data-layout-sec="sticky" data-screen-label="Recent work (sticky)" style=" display: flex; flex-direction: column; gap: 24px; padding-bottom: 96px;">
+      <div data-sr style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px; box-shadow: inset 0 -1px 0 rgb(226,219,206);">
+        <h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; color: rgb(0,0,0);">Recent work</h2>
+        <p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.5; color: rgb(0,0,0);">These are some of my most recent works that I delivered</p>
+      </div>
+      <div data-work>
+        <div style="display: flex; flex-direction: column;">
+          <article data-entry="0">
+            <div style="height: 36px; display: flex; align-items: center;"><div style="width: 140px; height: 26px; background: url(./assets/macquarie-logo-trim.png) left center / contain no-repeat;"></div></div>
+            <a data-inline-shot href="./Macquarie.dc.html" style="height: 240px; border-radius: 14px; background: url(./assets/macquarie-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(226,219,206);"></a>
+            <h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; color: rgb(0,0,0); text-wrap: pretty;">Broker Portal: Reducing application handling time</h3>
+            <a href="./Macquarie.dc.html" style="display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 13px 22px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224); color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </article>
+          <article data-entry="1">
+            <div style="height: 36px; display: flex; align-items: center;"><div style="width: 36px; height: 36px; border-radius: 9px; background: url(./assets/atlassian-icon.png) center / cover no-repeat;"></div></div>
+            <a data-inline-shot href="./AtlassianTeams.dc.html" style="height: 240px; border-radius: 14px; background: url(./assets/teams-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(226,219,206);"></a>
+            <h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; color: rgb(0,0,0); text-wrap: pretty;">Teams as the organising principle for work across Atlassian apps</h3>
+            <a href="./AtlassianTeams.dc.html" style="display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 13px 22px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224); color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </article>
+          <article data-entry="2">
+            <div style="height: 36px; display: flex; align-items: center;"><div style="width: 132px; height: 30px; background: url(./assets/commbank-logo-trim.png) left center / contain no-repeat;"></div></div>
+            <a data-inline-shot href="./CommBank.dc.html" style="height: 240px; border-radius: 14px; background: url(./assets/cba-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(226,219,206);"></a>
+            <h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; color: rgb(0,0,0); text-wrap: pretty;">Digitisation: Onboarding your business with CommBank</h3>
+            <a href="./CommBank.dc.html" style="display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 13px 22px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224); color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </article>
+          <article data-entry="3">
+            <div style="height: 36px; display: flex; align-items: center;"><div style="width: 120px; height: 36px; background: url(./casestudies-westpac/assets/westpac-logo.png) left center / contain no-repeat;"></div></div>
+            <a data-inline-shot href="./Westpac.dc.html" style="height: 240px; border-radius: 14px; background: url(./assets/westpac-preview.png) center top / cover no-repeat; box-shadow: 0 0 0 1px rgb(226,219,206);"></a>
+            <h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; color: rgb(0,0,0); text-wrap: pretty;">Westpac GEL: Australia&rsquo;s first banking Design System</h3>
+            <a href="./Westpac.dc.html" style="display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 13px 22px; border-radius: 4px; background: rgb(97,85,245); color: rgb(255,255,255); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: background .25s ease;" style-hover="background: rgb(80,68,224); color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </article>
+        </div>
+        <div data-sticky style="position: relative;">
+          <div style="position: sticky; top: calc(50vh - 270px); display: flex; flex-direction: column; gap: 18px;">
+            <a data-frame href="./Macquarie.dc.html" aria-label="Open case study" style="display: block; position: relative; height: 520px; border-radius: 20px; overflow: hidden; background: rgb(255,255,255); box-shadow: 0 0 0 1px rgb(226,219,206), 0 30px 70px rgba(60,50,120,0.12);">
+              <div data-shot="0" style="position: absolute; inset: 0;"><div style="position: absolute; inset: 0; background: url(./assets/macquarie-preview.png) center top / cover no-repeat;"></div></div>
+              <div data-shot="1" style="position: absolute; inset: 0;"><div style="position: absolute; inset: 0; background: url(./assets/teams-preview.png) center top / cover no-repeat;"></div></div>
+              <div data-shot="2" style="position: absolute; inset: 0;"><div style="position: absolute; inset: 0; background: url(./assets/cba-preview.png) center top / cover no-repeat;"></div></div>
+              <div data-shot="3" style="position: absolute; inset: 0;"><div style="position: absolute; inset: 0; background: url(./assets/westpac-preview.png) center top / cover no-repeat;"></div></div>
+              <div data-bubble style="position: absolute; left: 50%; top: 50%; width: 104px; height: 104px; border-radius: 50%; background: rgb(97,85,245); color: rgb(255,255,255); display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; pointer-events: none; box-shadow: 0 12px 30px rgba(97,85,245,0.4);">View</div>
+            </a>
+            <div style="display: flex; gap: 6px; height: 4px;">
+              <span data-tick="0" style="flex: 1 1 0; border-radius: 2px; background: rgb(226,219,206);"></span>
+              <span data-tick="1" style="flex: 1 1 0; border-radius: 2px; background: rgb(226,219,206);"></span>
+              <span data-tick="2" style="flex: 1 1 0; border-radius: 2px; background: rgb(226,219,206);"></span>
+              <span data-tick="3" style="flex: 1 1 0; border-radius: 2px; background: rgb(226,219,206);"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-layout-sec="cards" data-screen-label="Recent work (cards)" style="display: flex; flex-direction: column; gap: 36px; padding-bottom: 112px;">
+      <div data-sr style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <h2 data-sec-ink style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; color: rgb(0,0,0);">Recent work</h2>
+          <p data-sec-ink style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.5; color: rgb(0,0,0);">These are some of my most recent works that I delivered</p>
+        </div>
+        <div style="display: flex; gap: 10px;"><button data-nav-btn="prev" aria-label="Previous" style="width: 48px; height: 48px; border-radius: 50%; border: none; background: rgb(255,255,255); color: rgb(0,0,0); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 0 1px rgb(226,219,206); transition: background .25s ease, color .25s ease, opacity .25s ease;" style-hover="background: rgb(97,85,245); color: rgb(255,255,255);"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button data-nav-btn="next" aria-label="Next" style="width: 48px; height: 48px; border-radius: 50%; border: none; background: rgb(255,255,255); color: rgb(0,0,0); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 0 1px rgb(226,219,206); transition: background .25s ease, color .25s ease, opacity .25s ease;" style-hover="background: rgb(97,85,245); color: rgb(255,255,255);"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div>
+      </div>
+      <div data-track style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 8px; margin: -4px -2px 0;">
+          <a data-card2 data-sr href="./Macquarie.dc.html" style="flex: 0 0 340px; height: 560px; scroll-snap-align: start; position: relative; border-radius: 22px; overflow: hidden; background: radial-gradient(120% 80% at 80% 0%, rgb(74,72,66) 0%, rgb(30,30,32) 60%, rgb(18,18,20) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; color: rgb(255,255,255); transition-delay: 0.00s;">
+            <div data-orb="a" style="display: none; position: absolute; width: 300px; height: 300px; left: -60px; top: -40px; border-radius: 50%; background: rgb(140,128,104); filter: blur(60px); opacity: .75;"></div>
+            <div data-orb="b" style="display: none; position: absolute; width: 260px; height: 260px; right: -80px; top: 180px; border-radius: 50%; background: rgb(70,96,90); filter: blur(70px); opacity: .6;"></div>
+            <div data-fade style="display: none; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to bottom, rgba(12,12,14,0) 0%, rgba(12,12,14,0.85) 55%, rgb(12,12,14) 100%);"></div>
+            <div data-glass style="position: absolute; left: 22px; right: 22px; top: 44px; height: 320px; display: flex; flex-direction: column;">
+              <div data-glass-head style="display: none; height: 34px; align-items: center; justify-content: space-between; padding: 0 6px 0 4px; font-family: Inter, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(236,236,240);"><span>Macquarie</span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span></span></div>
+              <div data-panel style="flex: 1 1 auto; border-radius: 12px; background: rgb(255,255,255) url(./assets/macquarie-preview.png) left top / cover no-repeat; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 26px 50px rgba(0,0,0,0.32);"></div>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 8px;">
+              <span data-sub style="font-family: Inter, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(214,212,206);">Macquarie</span>
+              <span data-ink style="font-family: Alexandria, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.3; color: rgb(255,255,255); text-wrap: pretty;">Broker Portal: Reducing application handling time</span>
+              <span data-ink style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </div>
+          </a>
+          <a data-card2 data-sr href="./AtlassianTeams.dc.html" style="flex: 0 0 340px; height: 560px; scroll-snap-align: start; position: relative; border-radius: 22px; overflow: hidden; background: radial-gradient(120% 80% at 20% 0%, rgb(56,112,214) 0%, rgb(18,60,140) 55%, rgb(10,32,84) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; color: rgb(255,255,255); transition-delay: 0.08s;">
+            <div data-orb="a" style="display: none; position: absolute; width: 300px; height: 300px; left: -60px; top: -40px; border-radius: 50%; background: rgb(40,110,240); filter: blur(60px); opacity: .75;"></div>
+            <div data-orb="b" style="display: none; position: absolute; width: 260px; height: 260px; right: -80px; top: 180px; border-radius: 50%; background: rgb(60,190,220); filter: blur(70px); opacity: .6;"></div>
+            <div data-fade style="display: none; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to bottom, rgba(12,12,14,0) 0%, rgba(12,12,14,0.85) 55%, rgb(12,12,14) 100%);"></div>
+            <div data-glass style="position: absolute; left: 22px; right: 22px; top: 44px; height: 320px; display: flex; flex-direction: column;">
+              <div data-glass-head style="display: none; height: 34px; align-items: center; justify-content: space-between; padding: 0 6px 0 4px; font-family: Inter, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(236,236,240);"><span>Atlassian</span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span></span></div>
+              <div data-panel style="flex: 1 1 auto; border-radius: 12px; background: rgb(255,255,255) url(./assets/teams-preview.png) left top / cover no-repeat; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 26px 50px rgba(0,0,0,0.32);"></div>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 8px;">
+              <span data-sub style="font-family: Inter, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(206,222,250);">Atlassian</span>
+              <span data-ink style="font-family: Alexandria, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.3; color: rgb(255,255,255); text-wrap: pretty;">Teams as the organising principle for work across Atlassian apps</span>
+              <span data-ink style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </div>
+          </a>
+          <a data-card2 data-sr href="./CommBank.dc.html" style="flex: 0 0 340px; height: 560px; scroll-snap-align: start; position: relative; border-radius: 22px; overflow: hidden; background: radial-gradient(120% 80% at 80% 0%, rgb(255,226,110) 0%, rgb(246,196,40) 55%, rgb(214,158,10) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; color: rgb(0,0,0); transition-delay: 0.16s;">
+            <div data-orb="a" style="display: none; position: absolute; width: 300px; height: 300px; left: -60px; top: -40px; border-radius: 50%; background: rgb(240,180,20); filter: blur(60px); opacity: .75;"></div>
+            <div data-orb="b" style="display: none; position: absolute; width: 260px; height: 260px; right: -80px; top: 180px; border-radius: 50%; background: rgb(190,110,20); filter: blur(70px); opacity: .6;"></div>
+            <div data-fade style="display: none; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to bottom, rgba(12,12,14,0) 0%, rgba(12,12,14,0.85) 55%, rgb(12,12,14) 100%);"></div>
+            <div data-glass style="position: absolute; left: 22px; right: 22px; top: 44px; height: 320px; display: flex; flex-direction: column;">
+              <div data-glass-head style="display: none; height: 34px; align-items: center; justify-content: space-between; padding: 0 6px 0 4px; font-family: Inter, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(236,236,240);"><span>CommBank</span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span></span></div>
+              <div data-panel style="flex: 1 1 auto; border-radius: 12px; background: rgb(255,255,255) url(./assets/cba-preview.png) left top / cover no-repeat; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 26px 50px rgba(0,0,0,0.32);"></div>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 8px;">
+              <span data-sub style="font-family: Inter, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(48,38,8);">CommBank</span>
+              <span data-ink style="font-family: Alexandria, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.3; color: rgb(0,0,0); text-wrap: pretty;">Digitisation: Onboarding your business with CommBank</span>
+              <span data-ink style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; color: rgb(0,0,0);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </div>
+          </a>
+          <a data-card2 data-sr href="./Westpac.dc.html" style="flex: 0 0 340px; height: 560px; scroll-snap-align: start; position: relative; border-radius: 22px; overflow: hidden; background: radial-gradient(120% 80% at 20% 0%, rgb(232,58,74) 0%, rgb(178,16,36) 55%, rgb(110,8,22) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; color: rgb(255,255,255); transition-delay: 0.24s;">
+            <div data-orb="a" style="display: none; position: absolute; width: 300px; height: 300px; left: -60px; top: -40px; border-radius: 50%; background: rgb(220,30,50); filter: blur(60px); opacity: .75;"></div>
+            <div data-orb="b" style="display: none; position: absolute; width: 260px; height: 260px; right: -80px; top: 180px; border-radius: 50%; background: rgb(120,40,140); filter: blur(70px); opacity: .6;"></div>
+            <div data-fade style="display: none; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to bottom, rgba(12,12,14,0) 0%, rgba(12,12,14,0.85) 55%, rgb(12,12,14) 100%);"></div>
+            <div data-glass style="position: absolute; left: 22px; right: 22px; top: 44px; height: 320px; display: flex; flex-direction: column;">
+              <div data-glass-head style="display: none; height: 34px; align-items: center; justify-content: space-between; padding: 0 6px 0 4px; font-family: Inter, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(236,236,240);"><span>Westpac</span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35);"></span></span></div>
+              <div data-panel style="flex: 1 1 auto; border-radius: 12px; background: rgb(255,255,255) url(./assets/westpac-preview.png) left top / cover no-repeat; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 26px 50px rgba(0,0,0,0.32);"></div>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 8px;">
+              <span data-sub style="font-family: Inter, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(252,214,218);">Westpac</span>
+              <span data-ink style="font-family: Alexandria, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.3; color: rgb(255,255,255); text-wrap: pretty;">Westpac GEL: Australia&rsquo;s first banking Design System</span>
+              <span data-ink style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; color: rgb(255,255,255);">View case study<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            </div>
+          </a>
+      </div>
+      <div data-progress-track style="position: relative; height: 2px; background: rgb(226,219,206); border-radius: 1px; overflow: hidden;">
+        <div data-progress style="position: absolute; left: 0; top: 0; bottom: 0; width: 25%; background: rgb(0,0,0); border-radius: 1px; transition: transform .2s ease-out;"></div>
+      </div>
+    </section>
+    </div>
+
+    <section data-sr data-about data-screen-label="About teaser" style="display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 56px; align-items: center; padding: 72px; border-radius: 32px; background: rgb(97,85,245); color: rgb(255,255,255);">
+      <div style="width: 180px; height: 180px; border-radius: 50%; background: rgb(255,255,255) url(./assets/tim-avatar.jpg) 57% 58% / 138% auto no-repeat; box-shadow: 0 0 0 8px rgba(255,255,255,0.18);"></div>
+      <div style="display: flex; flex-direction: column; gap: 28px; align-items: flex-start;">
+        <p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 500; font-size: 36px; line-height: 1.25; letter-spacing: -0.015em; color: rgb(255,255,255); text-wrap: pretty;">Blending creative problem solving with complex data mining to back it up is my superpower.</p>
+        <a href="./About.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 4px; background: rgb(255,255,255); color: rgb(60,48,200); font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; line-height: 1; white-space: nowrap; transition: transform .25s ease, box-shadow .25s ease;" style-hover="color: rgb(60,48,200); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(20,10,90,0.3);">Read more about me<svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" style="display: block;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+    </section>
+    <footer style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 40px 4px 0; font-family: Inter, sans-serif; font-size: 15px; color: rgb(60,56,50);">
+      <span>Tim He</span>
+      <div style="display: flex; gap: 24px;">
+        <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="color: rgb(60,56,50);" style-hover="color: rgb(97,85,245);">LinkedIn</a>
+        <a href="./assets/TimHe_CV_26.pdf" download target="_blank" style="color: rgb(60,56,50);" style-hover="color: rgb(97,85,245);">CV</a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"workLayout":{"editor":"enum","options":["cards","sticky"],"default":"cards","tsType":"\"cards\" | \"sticky\"","section":"Recent work"},"cardStyle":{"editor":"enum","options":["glass","solid"],"default":"glass","tsType":"\"glass\" | \"solid\"","section":"Recent work"}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    document.documentElement.setAttribute('data-js', '');
+    const links = ['./Macquarie.dc.html', './AtlassianTeams.dc.html', './CommBank.dc.html', './Westpac.dc.html'];
+    this.setActive = (i) => {
+      document.querySelectorAll('[data-entry],[data-shot],[data-tick]').forEach((el) => {
+        const k = el.getAttribute('data-entry') ?? el.getAttribute('data-shot') ?? el.getAttribute('data-tick');
+        if (String(i) === k) el.setAttribute('data-on', ''); else el.removeAttribute('data-on');
+      });
+      const f = document.querySelector('[data-frame]');
+      if (f) f.setAttribute('href', links[i]);
+    };
+    this.tick = () => {
+      const mid = window.innerHeight / 2;
+      let best = 0, bestD = Infinity;
+      document.querySelectorAll('[data-entry]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = +el.getAttribute('data-entry'); }
+      });
+      this.setActive(best);
+      document.querySelectorAll('[data-sr]:not([data-in])').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.9 && r.bottom > 0) el.setAttribute('data-in', '');
+      });
+    };
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.tick(); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.onMove = (e) => {
+      const f = e.target.closest && e.target.closest('[data-frame]');
+      if (!f) return;
+      const b = f.querySelector('[data-bubble]'), r = f.getBoundingClientRect();
+      b.style.left = (e.clientX - r.left) + 'px'; b.style.top = (e.clientY - r.top) + 'px';
+    };
+    document.addEventListener('mousemove', this.onMove);
+    this.applyLayout = () => { const h = document.documentElement; h.setAttribute('data-layout', this.props.workLayout ?? 'cards'); h.setAttribute('data-cardstyle', this.props.cardStyle ?? 'glass'); };
+    this.applyLayout();
+    this.onTrack = () => {
+      const t = document.querySelector('[data-track]'), p = document.querySelector('[data-progress]');
+      if (!t || !p) return;
+      const vis = t.clientWidth / t.scrollWidth, max = t.scrollWidth - t.clientWidth;
+      const prog = max > 0 ? t.scrollLeft / max : 0;
+      p.style.width = (vis * 100) + '%';
+      p.style.transform = 'translateX(' + (prog * (1 / vis - 1) * 100) + '%)';
+      const pv = document.querySelector('[data-nav-btn="prev"]'), nx = document.querySelector('[data-nav-btn="next"]');
+      if (pv) pv.disabled = t.scrollLeft < 4;
+      if (nx) nx.disabled = t.scrollLeft > max - 4;
+    };
+    this.onClick = (e) => {
+      const b = e.target.closest && e.target.closest('[data-nav-btn]');
+      if (!b) return;
+      const t = document.querySelector('[data-track]');
+      t.scrollBy({ left: (b.getAttribute('data-nav-btn') === 'next' ? 1 : -1) * 360, behavior: 'smooth' });
+    };
+    document.addEventListener('click', this.onClick);
+    document.addEventListener('scroll', this.onTrack, { capture: true, passive: true });
+    window.addEventListener('resize', this.onTrack);
+    requestAnimationFrame(this.onTrack);
+    setTimeout(this.onTrack, 600);
+    requestAnimationFrame(this.tick);
+    this.boot = setInterval(this.tick, 500);
+    this.bootStop = setTimeout(() => clearInterval(this.boot), 3000);
+  }
+  componentDidUpdate() { this.applyLayout && this.applyLayout(); }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('scroll', this.onTrack, { capture: true });
+    window.removeEventListener('resize', this.onTrack);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    document.removeEventListener('mousemove', this.onMove);
+    clearInterval(this.boot); clearTimeout(this.bootStop);
+  }
+}
+</script>
+</body>
+</html>
