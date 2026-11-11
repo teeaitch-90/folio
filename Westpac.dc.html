@@ -104,6 +104,186 @@
     @keyframes checking { 0% { opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
     [data-spot2] { transition: left .9s cubic-bezier(.65,0,.35,1), top .9s cubic-bezier(.65,0,.35,1), width .9s cubic-bezier(.65,0,.35,1), height .9s cubic-bezier(.65,0,.35,1); }
     [data-ring2] { transition: stroke-dashoffset 2.2s cubic-bezier(.16,1,.3,1); }
+
+    /* ===== GEL live component sheet ===== */
+    .gel { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.35; color: rgb(43,43,46); --red: rgb(218,24,48); --red-d: rgb(172,14,36); --plum: rgb(98,26,72); --plum-d: rgb(70,16,51); --slate: rgb(47,60,66); --slate-d: rgb(28,38,43); --line: rgb(204,204,208); --faint: rgb(238,238,241); }
+    .gel *, .gel *::before, .gel *::after { box-sizing: border-box; }
+    .gel button:not(.gb), .gel input, .gel select, .gel textarea { font: inherit; color: inherit; margin: 0; }
+    .gel .gb { font-family: inherit; margin: 0; }
+    .gel button { cursor: pointer; }
+    .gel :focus-visible { outline: 2px solid rgb(97,85,245); outline-offset: 2px; }
+    .gel-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 24px; align-items: start; }
+    .gel-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+    .gg { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .gg-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .gg-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .gb { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 34px; padding: 0 14px; border: 1px solid var(--c); border-radius: 3px; background: var(--c); color: rgb(255,255,255); font-size: 13px; font-weight: 500; line-height: 1; white-space: nowrap; transition: background .15s ease, color .15s ease, border-color .15s ease, transform .12s ease; }
+    .gb:hover { background: var(--cd); border-color: var(--cd); }
+    .gb:active { transform: translateY(1px); }
+    .gb svg { flex: none; transition: transform .25s ease; }
+    .gb-primary { --c: var(--red); --cd: var(--red-d); }
+    .gb-hero { --c: var(--plum); --cd: var(--plum-d); }
+    .gb-neutral { --c: var(--slate); --cd: var(--slate-d); }
+    .gb-faint { --c: var(--faint); --cd: rgb(224,224,229); color: rgb(110,110,116); }
+    .gb-soft { background: rgb(255,255,255); color: var(--c); border-color: var(--c); }
+    .gb-soft:hover { background: rgba(0,0,0,0.04); color: var(--cd); border-color: var(--cd); }
+    .gb-faint.gb-soft { color: rgb(110,110,116); border-color: var(--line); }
+    .gb-faint.gb-soft:hover { color: rgb(60,60,66); background: var(--faint); border-color: rgb(170,170,176); }
+    .gb-48 { height: 48px; padding: 0 20px; font-size: 15px; }
+    .gb-42 { height: 42px; padding: 0 18px; font-size: 14px; }
+    .gb-36 { height: 36px; }
+    .gb-30 { height: 30px; padding: 0 11px; font-size: 12px; }
+    .gb-send:hover svg { transform: translate(2px,-2px); }
+    .gb[data-open] .gb-car { transform: rotate(180deg); }
+    .gt { --k: calc(var(--h) - 11px); position: relative; display: inline-flex; align-items: center; justify-content: flex-start; flex: none; width: var(--w); height: var(--h); padding: 0 calc(var(--h) * .3); border: 1.5px solid var(--plum); border-radius: 999px; background: rgb(255,255,255); color: var(--plum); font-size: calc(var(--h) * .44); font-weight: 500; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .gt::after { content: ''; position: absolute; top: 50%; left: 3px; width: var(--k); height: var(--k); border-radius: 50%; background: var(--plum); transform: translate(calc(var(--w) - var(--k) - 9px), -50%); transition: transform .3s cubic-bezier(.34,1.4,.64,1), background .2s ease; }
+    .gt[aria-checked="false"] { justify-content: flex-end; border-color: rgb(190,190,196); color: rgb(110,110,116); }
+    .gt[aria-checked="false"]::after { transform: translate(0,-50%); background: rgb(190,190,196); }
+    .gt-solid[aria-checked="true"] { background: var(--plum); color: rgb(255,255,255); }
+    .gt-solid[aria-checked="true"]::after { background: rgb(255,255,255); }
+    .gt-solid[aria-checked="false"] { background: rgb(236,236,240); border-color: rgb(204,204,208); }
+    .gt-solid[aria-checked="false"]::after { background: rgb(255,255,255); box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+    .gt:hover { filter: brightness(.95); }
+    .gs { display: flex; width: 100%; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; background: rgb(255,255,255); }
+    .gs button { flex: 1; min-width: 0; height: var(--sh, 34px); padding: 0 8px; border: 0; border-left: 1px solid var(--line); background: transparent; font-size: inherit; white-space: nowrap; transition: background .15s ease, color .15s ease; }
+    .gs button:first-child { border-left: 0; }
+    .gs button:hover { background: rgba(0,0,0,0.05); }
+    .gs button[aria-pressed="true"] { background: var(--plum); color: rgb(255,255,255); }
+    .gs-plum { border-color: var(--plum); }
+    .gs-red { border-color: var(--red); }
+    .gs-slate { border-color: var(--slate); }
+    .gs-red button[aria-pressed="true"] { background: var(--red); }
+    .gs-slate button[aria-pressed="true"] { background: var(--slate); }
+    .gi { width: 100%; height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 3px; background: rgb(255,255,255); font-size: 13px; transition: border-color .15s ease, box-shadow .15s ease; }
+    .gi:hover { border-color: rgb(150,150,156); }
+    .gi:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 3px rgba(98,26,72,0.16); }
+    .gi-42 { height: 42px; }
+    .gsel { appearance: none; -webkit-appearance: none; padding-right: 28px; background: rgb(255,255,255) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23222'/%3E%3C/svg%3E") no-repeat right 10px center; cursor: pointer; }
+    .gta { height: 84px; padding: 8px 10px; resize: vertical; }
+    .gl { font-size: 12px; color: rgb(60,60,66); }
+    .gl-help { font-size: 11px; color: rgb(110,110,116); }
+    .gad { display: flex; align-items: stretch; }
+    .gad .gi { flex: 1; min-width: 0; }
+    .gad .gb { border-radius: 0 3px 3px 0; }
+    .gad > .gi:not(:last-child) { border-radius: 3px 0 0 3px; border-right: 0; }
+    .gad > .gi:last-child { border-radius: 0 3px 3px 0; }
+    .gad-s { display: flex; align-items: center; padding: 0 10px; border: 1px solid var(--line); background: rgb(238,238,241); color: rgb(90,90,96); font-size: 12px; }
+    .gad > .gad-s:first-child { border-right: 0; border-radius: 3px 0 0 3px; }
+    .gad > .gad-s:last-child { border-left: 0; border-radius: 0 3px 3px 0; }
+    .gf-msg { display: none; align-items: center; gap: 6px; margin-top: 6px; color: var(--red); font-size: 11px; }
+    .gf[data-bad] .gf-msg { display: flex; }
+    .gf[data-bad] .gi { border-color: var(--red); }
+    .gf[data-bad] .gi:focus { box-shadow: 0 0 0 3px rgba(218,24,48,0.16); }
+    .gf-ic { flex: none; width: 9px; height: 9px; border: 1.5px solid var(--red); }
+    .gc { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
+    .gc input { appearance: none; -webkit-appearance: none; flex: none; display: grid; place-content: center; width: 16px; height: 16px; border: 1px solid rgb(140,140,146); border-radius: 2px; background: rgb(255,255,255); cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+    .gc input:hover { border-color: var(--plum); }
+    .gc input[type="radio"] { border-radius: 50%; }
+    .gc input::after { content: ''; width: 5px; height: 9px; margin-top: -2px; border: solid rgb(255,255,255); border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .18s cubic-bezier(.34,1.5,.64,1); }
+    .gc input[type="radio"]::after { width: 6px; height: 6px; margin: 0; border: 0; border-radius: 50%; background: rgb(255,255,255); transform: scale(0); }
+    .gc input:checked { background: var(--plum); border-color: var(--plum); }
+    .gc input:checked::after { transform: rotate(45deg) scale(1); }
+    .gc input[type="radio"]:checked::after { transform: scale(1); }
+    .gc input:disabled { opacity: .4; cursor: not-allowed; }
+    .gc-dis { color: rgb(130,130,136); cursor: not-allowed; }
+    .gbc { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+    .gbc button { border: 0; background: none; padding: 0; color: var(--red); }
+    .gbc button:hover { text-decoration: underline; }
+    .gacc { border: 1px solid var(--line); background: rgb(255,255,255); }
+    .gacc-i + .gacc-i { border-top: 1px solid var(--line); }
+    .gacc-h { position: relative; display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 10px 12px 10px 16px; border: 0; background: rgb(244,244,246); text-align: left; transition: background .2s ease; }
+    .gacc-h::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: rgb(206,206,200); transition: background .2s ease; }
+    .gacc-h svg { transition: transform .25s ease; }
+    .gacc-h:hover { background: rgb(236,236,240); }
+    .gacc-i[data-open] .gacc-h { background: rgb(255,255,255); }
+    .gacc-i[data-open] .gacc-h::before { background: var(--plum); }
+    .gacc-i[data-open] .gacc-h svg { transform: rotate(180deg); }
+    .gacc-b { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .gacc-i[data-open] .gacc-b { grid-template-rows: 1fr; }
+    .gacc-b > div { overflow: hidden; }
+    .gacc-b p { margin: 0; padding: 4px 16px 14px; font-size: 12px; color: rgb(70,70,76); }
+    .gul { margin: 0; padding: 0; list-style: none; }
+    .gul li { position: relative; padding-left: 16px; margin: 0 0 7px; font-size: 12px; transition: color .15s ease, transform .2s ease; }
+    .gul li:hover { color: var(--plum); transform: translateX(2px); }
+    .gul li::before { content: ''; position: absolute; left: 0; top: .5em; width: 6px; height: 6px; background: var(--plum); border-radius: 50%; }
+    .gul-chev li::before { width: 5px; height: 5px; border-radius: 0; background: none; border: solid rgb(110,110,116); border-width: 1.5px 1.5px 0 0; transform: rotate(45deg); top: .45em; }
+    .gul-sq li::before { border-radius: 0; background: var(--red); }
+    .gpg { display: flex; width: max-content; max-width: 100%; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+    .gpg button { min-width: 30px; height: 30px; padding: 0 10px; border: 0; border-left: 1px solid var(--line); background: rgb(255,255,255); font-size: 12px; transition: background .15s ease; }
+    .gpg button:first-child { border-left: 0; }
+    .gpg button:hover:not(:disabled) { background: rgb(240,240,243); }
+    .gpg button:disabled { color: rgb(160,160,166); cursor: not-allowed; }
+    .gpg button[aria-current="page"] { background: var(--plum); color: rgb(255,255,255); }
+    .glg { border: 1px solid var(--line); background: rgb(255,255,255); }
+    .glg button { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 8px 10px; border: 0; border-top: 1px solid var(--line); background: rgb(255,255,255); font-size: 12px; text-align: left; transition: background .15s ease; }
+    .glg button:first-child { border-top: 0; }
+    .glg button:hover { background: rgb(246,246,248); }
+    .glg button[aria-pressed="true"] { background: rgb(238,238,241); font-weight: 700; }
+    .gbd { display: inline-block; min-width: 24px; padding: 2px 7px; border-radius: 999px; background: rgb(30,30,36); color: rgb(255,255,255); font-size: 11px; font-weight: 700; text-align: center; }
+    .gset { border: 1px solid var(--line); background: rgb(255,255,255); }
+    .gset > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 10px; border-top: 1px solid var(--line); font-size: 12px; }
+    .gset > div:first-child { border-top: 0; }
+    .gset .gs { width: 74px; flex: none; --sh: 26px; font-size: 12px; border-color: var(--plum); }
+    .gpop { position: relative; }
+    .gpop > button { width: 100%; }
+    .gpop-c { position: absolute; right: 0; bottom: calc(100% + 12px); z-index: 30; width: 230px; background: rgb(255,255,255); border: 1px solid var(--line); box-shadow: 0 14px 34px -10px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s ease, transform .3s cubic-bezier(.16,1,.3,1), visibility .2s ease; }
+    .gpop[data-open] .gpop-c { opacity: 1; visibility: visible; transform: none; }
+    .gpop-c::after { content: ''; position: absolute; right: 36px; bottom: -6px; width: 10px; height: 10px; background: rgb(255,255,255); border: solid var(--line); border-width: 0 1px 1px 0; transform: rotate(45deg); }
+    .gpop-h { padding: 9px 12px; background: var(--slate); color: rgb(255,255,255); font-size: 12px; font-weight: 600; }
+    .gpop-b { padding: 12px; font-size: 12px; }
+    .gal { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; max-height: 140px; overflow: hidden; padding: 11px 12px; border: 1px solid var(--bd); background: var(--bg); color: var(--fg); font-size: 11.5px; line-height: 1.4; transition: opacity .25s ease, max-height .35s ease, padding .35s ease, border-width .35s ease; }
+    .gal[data-gone] { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; border-width: 0; }
+    .gal-x { flex: none; width: 18px; height: 18px; border: 0; background: none; color: inherit; font-size: 18px; line-height: 1; opacity: .75; }
+    .gal-x:hover { opacity: 1; }
+    .gal-warn { --bg: rgb(253,238,232); --bd: rgb(240,196,182); --fg: rgb(200,66,36); }
+    .gal-err { --bg: rgb(253,234,235); --bd: rgb(240,190,196); --fg: rgb(196,24,44); }
+    .gal-info { --bg: rgb(233,243,252); --bd: rgb(190,214,240); --fg: rgb(24,110,196); }
+    .gal-ok { --bg: rgb(234,246,236); --bd: rgb(190,224,196); --fg: rgb(40,140,70); }
+    .gal-fatal { --bg: rgb(255,255,0); --bd: rgb(230,230,0); --fg: rgb(40,40,40); }
+    .gpill { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 3px 10px; border-radius: 999px; background: var(--c); color: rgb(255,255,255); font-size: 11px; font-weight: 600; }
+    .gpill-f { background: rgb(255,255,255); color: rgb(90,90,96); border: 1px solid var(--line); }
+    .gtag { display: inline-block; align-self: flex-start; padding: 2px 6px; border-radius: 2px; background: var(--c); color: rgb(255,255,255); font-size: 10px; font-weight: 600; }
+    .gtag-f { background: rgb(255,255,255); color: rgb(90,90,96); border: 1px solid var(--line); }
+    .gdd { border: 1px solid var(--line); background: rgb(255,255,255); box-shadow: 0 10px 28px -10px rgba(0,0,0,0.28); }
+    .gdd-h { padding: 7px 12px; background: rgb(240,240,236); color: rgb(90,90,96); font-size: 11px; }
+    .gdd-i { padding: 9px 12px; border-bottom: 1px solid rgb(232,232,234); transition: background .15s ease; }
+    .gdd-i:hover { background: rgb(247,247,249); }
+    .gdd-a { position: relative; display: block; width: 100%; padding: 6px 12px 6px 24px; border: 0; background: rgb(255,255,255); font-size: 12px; text-align: left; transition: background .15s ease, color .15s ease; }
+    .gdd-a::before { content: ''; position: absolute; left: 12px; top: 50%; width: 4px; height: 4px; margin-top: -3px; border: solid rgb(110,110,116); border-width: 1px 1px 0 0; transform: rotate(45deg); }
+    .gdd-a:hover { background: rgb(240,240,244); color: var(--plum); }
+    .gdd-p { margin: 0; padding: 10px 12px; border-bottom: 1px solid rgb(232,232,234); font-size: 12px; color: rgb(70,70,76); }
+    .gpn { border: 1px solid var(--plum); background: rgb(255,255,255); }
+    .gpn-h, .gpn-hs { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 9px 12px; border: 0; background: var(--plum); color: rgb(255,255,255); font-size: 12px; font-weight: 600; text-align: left; }
+    .gpn-h:hover { background: var(--plum-d); }
+    .gpn-h svg { transition: transform .25s ease; }
+    .gpn[data-closed] .gpn-h svg { transform: rotate(180deg); }
+    .gpn-b { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .3s ease; }
+    .gpn[data-closed] .gpn-b { grid-template-rows: 0fr; }
+    .gpn-b > div { overflow: hidden; }
+    .gpn-b p { margin: 0; padding: 12px; font-size: 12px; color: rgb(70,70,76); }
+    .gpn-f { padding: 9px 12px; border-top: 1px solid var(--line); background: rgb(240,240,243); font-size: 12px; color: rgb(70,70,76); }
+    .gtb { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .gtb caption { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; font-size: 13px; color: rgb(90,90,96); }
+    .gtb th { padding: 0; border-bottom: 2px solid var(--plum); text-align: left; }
+    .gtb th button { width: 100%; padding: 8px 12px; border: 0; background: none; font-weight: 700; text-align: left; }
+    .gtb th button:hover { background: rgb(246,246,248); }
+    .gtb th[aria-sort="ascending"] button::after { content: ' \2191'; color: var(--plum); }
+    .gtb th[aria-sort="descending"] button::after { content: ' \2193'; color: var(--plum); }
+    .gtb td { padding: 8px 12px; border-bottom: 1px solid rgb(232,232,234); }
+    .gtb tbody tr { cursor: pointer; transition: background .15s ease; }
+    .gtb tbody tr:hover { background: rgb(247,247,249); }
+    .gtb tbody tr[aria-selected="true"] { background: rgb(244,236,242); }
+    .gel-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(24,10,20,0.55); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+    .gel-modal[data-open] { opacity: 1; visibility: visible; }
+    .gel-mc { width: 420px; max-width: 100%; background: rgb(255,255,255); box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5); transform: translateY(14px) scale(.97); transition: transform .35s cubic-bezier(.16,1,.3,1); }
+    .gel-modal[data-open] .gel-mc { transform: none; }
+    .gel-mh { display: flex; align-items: center; justify-content: space-between; padding: 12px 12px 12px 20px; border-bottom: 1px solid var(--line); color: var(--plum); font-size: 15px; font-weight: 700; }
+    .gel-mx { width: 32px; height: 32px; border: 0; background: none; color: rgb(100,100,106); font-size: 24px; line-height: 1; }
+    .gel-mx:hover { color: rgb(20,20,24); }
+    .gel-mb { padding: 20px; font-size: 14px; color: rgb(60,60,66); }
+    .gel-mf { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--line); background: rgb(244,244,246); }
+    @media (max-width: 1000px) { .gel-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 620px) { .gel-grid { grid-template-columns: minmax(0,1fr); } }
     @media (max-width: 900px) {
       [data-g] { grid-template-columns: minmax(0,1fr) !important; }
       [data-wc] { grid-column: 1 / -1 !important; height: 500px !important; }
@@ -189,24 +369,261 @@
 
   <section data-sec data-screen-label="Foundations" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
     
-    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
-      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">01</span>
+    <div data-rv data-g style="display: grid; grid-template-columns: minmax(0,1fr); gap: 32px; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
       <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Foundations</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Laying the foundational components that can facilitate all essential UI interactions across Westpac’s customer facings experiences</h2></div>
     </div>
     
     <div data-g style="display: flex; flex-direction: column; gap: 40px;">
       <div data-rv style="display: flex; flex-direction: column; gap: 20px; max-width: 720px;"><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.6; color: rgb(96,95,90); text-wrap: pretty;">As a outcome, we had developed, constructed, and established governance for our components, making them accessible, understandable, and reusable. This leads to a familiar and user-friendly experience for our customers and provides significant efficiency improvements for our development teams and their stakeholders, allowing for the delivery of consistent, high-quality results and ready-to-code user solutions.</p></div>
-      <div data-rv style="transition-delay: .1s; min-width: 0;"><div data-loupe style="position: relative; border-radius: 24px; background: rgb(255,255,255); padding: 10px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 40px 90px -40px rgba(30,30,60,0.35); cursor: zoom-in;">
-        <img src="./casestudies-westpac/assets/810f9c1bf21cc396.png" alt="GEL foundational components" style="display: block; width: 100%; height: auto; border-radius: 16px;">
-        <div data-lens style="position: absolute; left: 0; top: 0; width: 220px; height: 220px; border-radius: 50%; pointer-events: none; opacity: 0; transform: translate(-50%,-50%) scale(.6); transition: opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1); background: rgb(255,255,255) url(./casestudies-westpac/assets/810f9c1bf21cc396.png) no-repeat; box-shadow: 0 0 0 4px rgb(255,255,255), 0 0 0 5px rgba(0,0,0,0.08), 0 24px 50px -16px rgba(20,20,40,0.45);"></div>
+      <div data-rv style="transition-delay: .1s; min-width: 0;"><div data-gel-sheet class="gel" style="border-radius: 24px; background: rgb(255,255,255); padding: 20px 28px 32px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 40px 90px -40px rgba(30,30,60,0.35);">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 18px; margin-bottom: 24px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
+          <div style="display: flex; align-items: center; gap: 12px; font-family: Geist, sans-serif; font-size: 15px; font-weight: 500; color: rgb(17,17,17);"><span aria-hidden="true" style="position: relative; width: 10px; height: 10px; flex: none;"><span data-pulse style="position: absolute; inset: 0; border-radius: 50%; background: rgb(97,85,245);"></span><span style="position: absolute; inset: 0; border-radius: 50%; background: rgb(97,85,245);"></span></span>Live GEL components. Click, toggle and type: everything here works.</div>
+          <button type="button" class="gb gb-soft gb-neutral gb-30" data-gel-reset style="font-family: Geist, sans-serif;">Reset</button>
+        </div>
+        <div class="gel-grid">
+
+          <div class="gel-col">
+            <div class="gg">
+              <img src="./casestudies-westpac/assets/westpac-logo.png" alt="Westpac" style="display: block; height: 26px; width: auto; align-self: flex-start;">
+              <nav class="gbc" aria-label="Breadcrumb"><button type="button">Home</button><span aria-hidden="true">/</span><button type="button">Drinks</button><span aria-hidden="true">/</span><span>Beer</span></nav>
+            </div>
+            <div class="gacc">
+              <div class="gacc-i" data-open><button type="button" class="gacc-h" aria-expanded="true"><span>First</span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><div class="gacc-b"><div><p>This is the open state of the accordion menu. The padding values in the accordion are responsive.</p></div></div></div>
+              <div class="gacc-i"><button type="button" class="gacc-h" aria-expanded="false"><span>Second</span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><div class="gacc-b"><div><p>Each panel opens on its own, and the one that was open closes behind it.</p></div></div></div>
+              <div class="gacc-i"><button type="button" class="gacc-h" aria-expanded="false"><span>Third</span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><div class="gacc-b"><div><p>Keyboard users can reach every header with Tab and open it with Enter or Space.</p></div></div></div>
+            </div>
+            <div class="gg gg-2">
+              <button type="button" class="gb gb-primary">Primary</button><button type="button" class="gb gb-primary gb-soft">Primary soft</button>
+              <button type="button" class="gb gb-hero">Hero</button><button type="button" class="gb gb-hero gb-soft">Hero soft</button>
+              <button type="button" class="gb gb-neutral">Neutral</button><button type="button" class="gb gb-neutral gb-soft">Neutral Soft</button>
+              <button type="button" class="gb gb-faint">Faint</button><button type="button" class="gb gb-faint gb-soft">Faint Soft</button>
+            </div>
+            <div class="gg gg-2">
+              <button type="button" class="gb gb-primary gb-send">Primary<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button><button type="button" class="gb gb-primary gb-soft gb-send">Primary<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-hero gb-send">Hero<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button><button type="button" class="gb gb-hero gb-soft gb-send">Hero<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-neutral gb-send">Neutral<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button><button type="button" class="gb gb-neutral gb-soft gb-send">Neutral<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-faint gb-send">Faint<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button><button type="button" class="gb gb-faint gb-soft gb-send">Faint<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1L1 7l5 2 2 5 7-13z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="gg">
+              <input class="gi" placeholder="I&rsquo;m an input field - 36px high" aria-label="Input field, 36px high">
+              <input class="gi gi-42" placeholder="I&rsquo;m an input field - 42px high" aria-label="Input field, 42px high">
+              <select class="gi gsel" aria-label="Select element, 36px high"><option>I&rsquo;m a select element - 36px high</option><option>Option two</option><option>Option three</option></select>
+              <select class="gi gi-42 gsel" aria-label="Select element, 42px high"><option>I&rsquo;m a select element - 42px high</option><option>Option two</option><option>Option three</option></select>
+              <select class="gi gsel" aria-label="Select element"><option>Select element</option><option>Option two</option><option>Option three</option></select>
+              <label class="gl" for="gel-ta">Form label</label>
+              <textarea class="gi gta" id="gel-ta" rows="3"></textarea>
+            </div>
+            <div class="gg gg-2">
+              <label class="gc"><input type="checkbox"><span>Checkbox label</span></label>
+              <label class="gc gc-dis"><input type="checkbox" disabled><span>Checkbox label</span></label>
+              <label class="gc"><input type="checkbox" checked><span>Checkbox label</span></label>
+              <label class="gc gc-dis"><input type="checkbox" checked disabled><span>Checkbox label</span></label>
+            </div>
+            <div class="gg" style="gap: 10px;">
+              <label class="gc"><input type="radio" name="gel-r"><span>Radio button label</span></label>
+              <label class="gc"><input type="radio" name="gel-r" checked><span>Radio button label</span></label>
+              <label class="gc gc-dis"><input type="radio" name="gel-r2" disabled><span>Radio button label</span></label>
+              <label class="gc gc-dis"><input type="radio" name="gel-r2" checked disabled><span>Radio button label</span></label>
+            </div>
+          </div>
+
+          <div class="gel-col">
+            <div class="gg">
+              <div class="gg-row" style="gap: 10px;">
+                <button type="button" class="gt" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 22px; --w: 46px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 26px; --w: 54px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 32px; --w: 64px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 40px; --w: 76px;"><span class="gt-t">On</span></button>
+              </div>
+              <div class="gg-row" style="gap: 10px;">
+                <button type="button" class="gt" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 22px; --w: 46px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 26px; --w: 54px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 32px; --w: 64px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 40px; --w: 76px;"><span class="gt-t">Off</span></button>
+              </div>
+            </div>
+            <div class="gg">
+              <div class="gg-row" style="gap: 10px;">
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 22px; --w: 46px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 26px; --w: 54px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 32px; --w: 64px;"><span class="gt-t">On</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="true" aria-label="Toggle" style="--h: 40px; --w: 76px;"><span class="gt-t">On</span></button>
+              </div>
+              <div class="gg-row" style="gap: 10px;">
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 22px; --w: 46px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 26px; --w: 54px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 32px; --w: 64px;"><span class="gt-t">Off</span></button>
+                <button type="button" class="gt gt-solid" role="switch" aria-checked="false" aria-label="Toggle" style="--h: 40px; --w: 76px;"><span class="gt-t">Off</span></button>
+              </div>
+            </div>
+            <div class="gg gg-2">
+              <button type="button" class="gb gb-primary" data-dd>Primary<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><button type="button" class="gb gb-primary gb-soft" data-dd>Primary<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-hero" data-dd>Hero<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><button type="button" class="gb gb-hero gb-soft" data-dd>Hero<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-neutral" data-dd>Neutral<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><button type="button" class="gb gb-neutral gb-soft" data-dd>Neutral<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-faint" data-dd>Faint<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button><button type="button" class="gb gb-faint gb-soft" data-dd>Faint<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="gg">
+              <div class="gad"><input class="gi" placeholder="Placeholder text" aria-label="Placeholder text with Go button"><button type="button" class="gb gb-hero">Go</button></div>
+              <div class="gad"><input class="gi" placeholder="Placeholder text" aria-label="Placeholder text with info button"><button type="button" class="gb gb-hero" aria-label="Info"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+              <div class="gad"><input class="gi" placeholder="Placeholder text" aria-label="Placeholder text with select button"><button type="button" class="gb gb-hero" data-dd>Select<svg class="gb-car" width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button></div>
+              <div class="gad"><span class="gad-s">@</span><input class="gi" placeholder="Username" aria-label="Username"></div>
+              <div class="gad"><input class="gi" placeholder="Total" aria-label="Total"><span class="gad-s">.00</span></div>
+            </div>
+            <div class="gg">
+              <input class="gi" placeholder="dd/mm/yy" aria-label="Date">
+              <label class="gl" for="gel-ph">Form label</label>
+              <input class="gi" id="gel-ph" placeholder="This is placeholder text">
+            </div>
+            <div class="gg" style="gap: 12px;">
+              <div class="gf" data-v="email" data-bad><input class="gi" type="email" placeholder="Try typing an email address" aria-label="Email address"><div class="gf-msg"><span class="gf-ic" aria-hidden="true"></span><span class="gf-m">Please enter your email address</span></div></div>
+              <div><input class="gi" placeholder="Field with help text" aria-label="Field with help text"><div class="gl-help" style="margin-top: 6px;">This is a block of help text.</div></div>
+              <div class="gf" data-v="name" data-bad><input class="gi" placeholder="Try typing your name" aria-label="Name"><div class="gf-msg"><span class="gf-ic" aria-hidden="true"></span><span class="gf-m">Are you sure this is your name?</span></div></div>
+            </div>
+            <div class="gg gg-2" style="gap: 16px;">
+              <ul class="gul"><li>Quodic test, cum qui cupta culparia</li><li>Magnatet molumquos reptatis doluptassi omniet rerovit aut lorme</li><li>We eptatis doluptassi omniet</li></ul>
+              <ul class="gul gul-chev"><li>Quodic test, cum qui cupta culparia</li><li>Magnatet molumquos reptatis doluptassi omniet rerovit aut lorme</li><li>We eptatis doluptassi omniet</li></ul>
+              <ul class="gul gul-sq"><li>Quodic test, cum qui cupta culparia</li><li>Magnatet molumquos reptatis doluptassi omniet rerovit aut lorme</li><li>We eptatis doluptassi omniet</li></ul>
+            </div>
+          </div>
+
+          <div class="gel-col">
+            <div class="gg" style="align-items: flex-start;">
+              <button type="button" class="gb gb-primary gb-48" data-dd>X Large - 48px<svg class="gb-car" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-primary gb-42" data-dd>Large - 42px<svg class="gb-car" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-primary gb-36" data-dd>Default - 36px<svg class="gb-car" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <button type="button" class="gb gb-primary gb-30" data-dd>Small - 30px<svg class="gb-car" width="9" height="5" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="gg" style="align-items: flex-start;">
+              <button type="button" class="gb gb-primary gb-48">X Large - 48px</button>
+              <button type="button" class="gb gb-primary gb-42">Large - 42px</button>
+              <button type="button" class="gb gb-primary gb-36">Default - 36px</button>
+              <button type="button" class="gb gb-primary gb-30">Small - 30px</button>
+            </div>
+            <div class="gg">
+              <div class="gs gs-plum" role="group" aria-label="X Large 48px" style="--sh: 48px; font-size: 15px;"><button type="button" aria-pressed="false">X Large 48px</button><button type="button" aria-pressed="true">X Large 48px</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Large 42px" style="--sh: 42px; font-size: 14px;"><button type="button" aria-pressed="false">Large 42px</button><button type="button" aria-pressed="true">Large 42px</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Default 36px" style="--sh: 36px;"><button type="button" aria-pressed="false">Default 36px</button><button type="button" aria-pressed="true">Default 36px</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Small 30px" style="--sh: 30px; font-size: 12px;"><button type="button" aria-pressed="false">Small 30px</button><button type="button" aria-pressed="true">Small 30px</button></div>
+            </div>
+            <div class="gg">
+              <div class="gs gs-plum" role="group" aria-label="Choose one"><button type="button" aria-pressed="false">One</button><button type="button" aria-pressed="false">Two</button><button type="button" aria-pressed="false">Three</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Choose one"><button type="button" aria-pressed="false">One</button><button type="button" aria-pressed="true">Two</button><button type="button" aria-pressed="false">Three</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Choose one"><button type="button" aria-pressed="false">One</button><button type="button" aria-pressed="true">Two</button><button type="button" aria-pressed="false">More</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Choose one"><button type="button" aria-pressed="false">One</button><button type="button" aria-pressed="true">Two</button><button type="button" aria-pressed="false">Three</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Yes or no"><button type="button" aria-pressed="false">Yes</button><button type="button" aria-pressed="true">No</button></div>
+            </div>
+            <div class="gg">
+              <div class="gs gs-red" role="group" aria-label="Primary"><button type="button" aria-pressed="true">Primary</button><button type="button" aria-pressed="false">Primary</button></div>
+              <div class="gs gs-plum" role="group" aria-label="Hero"><button type="button" aria-pressed="true">Hero</button><button type="button" aria-pressed="false">Hero</button></div>
+              <div class="gs gs-slate" role="group" aria-label="Neutral"><button type="button" aria-pressed="true">Neutral</button><button type="button" aria-pressed="false">Neutral</button></div>
+            </div>
+            <div class="gset">
+              <div><span>Send me sms reminders</span><div class="gs" role="group" aria-label="Send me sms reminders"><button type="button" aria-pressed="true">Yes</button><button type="button" aria-pressed="false">No</button></div></div>
+              <div><span>Give me free money</span><div class="gs" role="group" aria-label="Give me free money"><button type="button" aria-pressed="true">Yes</button><button type="button" aria-pressed="false">No</button></div></div>
+              <div><span>Call me all the time</span><div class="gs" role="group" aria-label="Call me all the time"><button type="button" aria-pressed="false">Yes</button><button type="button" aria-pressed="true">No</button></div></div>
+              <div><span>Pay my mortgage</span><div class="gs" role="group" aria-label="Pay my mortgage"><button type="button" aria-pressed="true">Yes</button><button type="button" aria-pressed="false">No</button></div></div>
+            </div>
+            <div class="gg gg-2">
+              <button type="button" class="gb gb-hero" data-gel-open>Open modal</button>
+              <div class="gpop">
+                <button type="button" class="gb gb-neutral" aria-expanded="false">Popover top</button>
+                <div class="gpop-c" role="dialog" aria-label="Popover"><div class="gpop-h">Hola - Popover top</div><div class="gpop-b">This is the popover content.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gel-col">
+            <div class="gg" style="gap: 10px;">
+              <div class="gal gal-warn"><span><b>Warning!</b> Are you sure your name is fdfdfdfd?</span><button type="button" class="gal-x" aria-label="Dismiss">&times;</button></div>
+              <div class="gal gal-err"><span><b>Woops!</b> Looks like you haven&rsquo;t given us a contact number.</span><button type="button" class="gal-x" aria-label="Dismiss">&times;</button></div>
+              <div class="gal gal-info"><span><b>Did you know:</b> You can save this transaction to your favorites.</span><button type="button" class="gal-x" aria-label="Dismiss">&times;</button></div>
+              <div class="gal gal-ok"><span><b>Approved:</b> You&rsquo;re good to go. Have a smashing day.</span><button type="button" class="gal-x" aria-label="Dismiss">&times;</button></div>
+              <div class="gal gal-fatal"><span><b>Fatal System Error 8942:</b> The server is not responding. Please try again later. Sorry for the inconvenience.</span><button type="button" class="gal-x" aria-label="Dismiss">&times;</button></div>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; align-items: start;">
+              <div class="gg" style="gap: 8px;">
+                <span class="gpill" style="--c: var(--red);">Primary</span>
+                <span class="gpill" style="--c: var(--plum);">Hero</span>
+                <span class="gpill" style="--c: var(--slate);">Neutral</span>
+                <span class="gpill gpill-f">Faint</span>
+                <span class="gpill" style="--c: var(--plum); padding: 6px 10px 6px 14px; font-size: 12px; margin-top: 4px;">Secondary <span class="gbd" style="background: rgb(255,255,255); color: var(--plum);">83</span></span>
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--red);">Inbox <span class="gbd">98</span></span>
+              </div>
+              <div class="gg" style="gap: 8px;">
+                <span class="gtag" style="--c: var(--red);">Primary</span>
+                <span class="gtag" style="--c: var(--plum);">Hero</span>
+                <span class="gtag" style="--c: var(--slate);">Neutral</span>
+                <span class="gtag gtag-f">Faint</span>
+                <span class="gtag" style="--c: rgb(24,110,196);">Information</span>
+                <span class="gtag" style="--c: rgb(214,92,14);">Warning</span>
+                <span class="gtag" style="--c: rgb(184,20,28);">Danger</span>
+              </div>
+            </div>
+            <div class="gdd">
+              <div class="gdd-h">Dropdown header</div>
+              <label class="gc gdd-i"><input type="checkbox"><span>Checkbox label</span></label>
+              <label class="gc gdd-i"><input type="checkbox" checked><span>Checkbox label</span></label>
+              <div class="gdd-h">Dropdown header</div>
+              <label class="gc gdd-i"><input type="radio" name="gel-dd"><span>Radio button label</span></label>
+              <label class="gc gdd-i"><input type="radio" name="gel-dd" checked><span>Radio button label</span></label>
+              <div class="gdd-h">Dropdown header</div>
+              <button type="button" class="gdd-a">Another action</button>
+              <button type="button" class="gdd-a">Something else here</button>
+              <button type="button" class="gdd-a">Even more stuff</button>
+              <button type="button" class="gdd-a">Hover focus active tap</button>
+              <div class="gdd-h">Dropdown header</div>
+              <p class="gdd-p">Oratem doluptatur, cuptur, ellacia volore eicitati volor aricius vidis exces dolendaes dem. Ceatur re et qui berspide modiatibea iuntion core vellandam aliquia ad enessendit et liqui saectin</p>
+              <div class="gdd-h">Dropdown header</div>
+              <div class="gset" style="border: 0;">
+                <div><span>Setting one</span><div class="gs" role="group" aria-label="Setting one"><button type="button" aria-pressed="false">Yes</button><button type="button" aria-pressed="true">No</button></div></div>
+                <div><span>Setting one</span><div class="gs" role="group" aria-label="Setting one, second"><button type="button" aria-pressed="false">Yes</button><button type="button" aria-pressed="true">No</button></div></div>
+              </div>
+              <div class="gdd-h">Dropdown header</div>
+              <label class="gc gdd-i" style="justify-content: space-between;"><span>Checkbox label</span><input type="checkbox"></label>
+              <label class="gc gdd-i" style="justify-content: space-between; border-bottom: 0;"><span>Checkbox label</span><input type="checkbox" checked></label>
+            </div>
+            <div class="gpg" role="group" aria-label="Pagination">
+              <button type="button">Back</button><button type="button">1</button><button type="button" aria-current="page">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button><button type="button">Next</button>
+            </div>
+            <div class="glg" role="group" aria-label="Messages">
+              <button type="button" aria-pressed="false"><span>Personal messages</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="false"><span>Work messages</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="false"><span>Unread messages</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="false"><span>Deleted messages</span><span class="gbd">98</span></button>
+            </div>
+            <div class="glg" role="group" aria-label="More messages">
+              <button type="button" aria-pressed="false"><span>Personal messages</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="true"><span>Active item</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="false"><span>Unread messages</span><span class="gbd">98</span></button>
+              <button type="button" aria-pressed="false"><span>Deleted messages</span><span class="gbd">98</span></button>
+            </div>
+            <div class="gpn">
+              <button type="button" class="gpn-h" aria-expanded="true"><span>Panel heading</span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+              <div class="gpn-b"><div><p>This is the panel content. You can pretty much put anything in this container.</p><div class="gpn-f">Panel footer</div></div></div>
+            </div>
+            <div class="gpn">
+              <div class="gpn-hs">Panel heading</div>
+              <table class="gtb">
+                <caption>Table caption goes here</caption>
+                <thead><tr><th><button type="button">Coffee</button></th><th><button type="button">Location</button></th><th><button type="button">Price</button></th></tr></thead>
+                <tbody>
+                  <tr><td>Flat white</td><td>Large</td><td>$3.50</td></tr>
+                  <tr><td>Long black</td><td>Regular</td><td>$3.20</td></tr>
+                  <tr><td>Cappuccino</td><td>Small</td><td>$3.80</td></tr>
+                  <tr><td>Mocha</td><td>Large</td><td>$4.50</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
       </div></div>
     </div>
   </section>
 
   <section data-sec data-screen-label="Monitoring" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
     
-    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
-      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">02</span>
+    <div data-rv data-g style="display: grid; grid-template-columns: minmax(0,1fr); gap: 32px; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
       <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Governance</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Monitoring, continuous improvement and iteration</h2></div>
     </div>
     
@@ -221,8 +638,7 @@
 
   <section data-sec data-screen-label="Federating" style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 80px 32px 160px; display: flex; flex-direction: column; gap: 72px;">
     
-    <div data-rv data-g style="display: grid; grid-template-columns: auto minmax(0,1fr); gap: 32px; align-items: end; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
-      <span style="font-family: Geist, sans-serif; font-weight: 500; letter-spacing: -0.04em; font-size: 88px; line-height: 0.8; color: rgb(17,17,17);">03</span>
+    <div data-rv data-g style="display: grid; grid-template-columns: minmax(0,1fr); gap: 32px; padding-bottom: 32px; box-shadow: inset 0 -1px 0 rgba(17,17,17,0.08);">
       <div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: Geist, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: rgb(96,95,90);">Contribution</span><h2 data-h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.04em; color: rgb(17,17,17); text-wrap: balance;">Federating the design system to allow teams to contribute</h2></div>
     </div>
     
@@ -289,13 +705,20 @@
     </div>
   </section>
     <footer style="width: 1200px; max-width: 100%; margin: 0 auto; padding: 28px 32px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; box-shadow: inset 0 1px 0 rgba(17,17,17,0.08); font-family: Geist, sans-serif; font-size: 14px; color: rgb(96,95,90);">
-      <span>Tim He &middot; Product Designer</span>
+      <span>Tim He, Product Designer</span>
       <div style="display: flex; gap: 22px;">
         <a href="https://www.linkedin.com/in/timtianlehe/" target="_blank" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">LinkedIn</a>
         <a href="./assets/TimHe_CV_26.pdf" download target="_blank" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">CV</a>
         <a href="./About.dc.html" style="color: rgb(96,95,90);" style-hover="color: rgb(17,17,17);">About</a>
       </div>
     </footer>
+    <div class="gel gel-modal" data-gel-modal aria-hidden="true">
+      <div class="gel-mc" role="dialog" aria-modal="true" aria-labelledby="gel-mt">
+        <div class="gel-mh"><span id="gel-mt">Modal title</span><button type="button" class="gel-mx" data-gel-close aria-label="Close">&times;</button></div>
+        <div class="gel-mb">You are about to withdraw 50 billion dollars. Are you sure about this?</div>
+        <div class="gel-mf"><button type="button" class="gb gb-soft gb-neutral" data-gel-close>Cancel</button><button type="button" class="gb gb-primary" data-gel-close>Yes</button></div>
+      </div>
+    </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -425,8 +848,148 @@ class Component extends DCLogic {
         el.setAttribute('data-reset', ''); el.removeAttribute('data-play'); setTimeout(function () { el.removeAttribute('data-reset'); }, 60); setTimeout(function () { el.setAttribute('data-play', ''); }, 700);
       });
     }, 11000);
+
+    // ---- live GEL component sheet ----
+    var sheet = document.querySelector('[data-gel-sheet]');
+    var modal = document.querySelector('[data-gel-modal]');
+    var ATTRS = ['aria-pressed', 'aria-checked', 'aria-expanded', 'aria-current', 'aria-selected', 'aria-sort', 'data-open', 'data-bad', 'data-gone', 'data-closed'];
+    var snap = [], inputs = [], tbody = null, rows0 = [], lastFocus = null;
+    if (sheet) {
+      q('.gacc-i, .gacc-h, .gt, .gs button, .glg button, .gpg button, .gb[data-dd], .gpop, .gpop > button, .gal, .gpn, .gpn-h, .gtb th, .gtb tbody tr, .gf', sheet).forEach(function (el) {
+        var a = {}; ATTRS.forEach(function (n) { if (el.hasAttribute(n)) a[n] = el.getAttribute(n); });
+        snap.push({ el: el, a: a, t: el.classList.contains('gt') ? el.querySelector('.gt-t').textContent : null });
+      });
+      inputs = q('input, select, textarea', sheet);
+      tbody = sheet.querySelector('.gtb tbody'); if (tbody) rows0 = q('tr', tbody);
+    }
+    var pager = function (pg) {
+      var btns = q('button', pg), nums = btns.filter(function (b) { return /^\d+$/.test(b.textContent.trim()); });
+      var cur = nums.findIndex(function (b) { return b.getAttribute('aria-current') === 'page'; });
+      btns[0].disabled = cur <= 0; btns[btns.length - 1].disabled = cur >= nums.length - 1;
+    };
+    if (sheet) q('.gpg', sheet).forEach(pager);
+    var closePops = function () {
+      q('.gpop[data-open]').forEach(function (p) { p.removeAttribute('data-open'); p.firstElementChild.setAttribute('aria-expanded', 'false'); });
+    };
+    var openModal = function () {
+      if (!modal) return;
+      lastFocus = document.activeElement; modal.setAttribute('data-open', ''); modal.setAttribute('aria-hidden', 'false');
+      setTimeout(function () { var b = modal.querySelector('.gb-primary'); if (b) b.focus(); }, 60);
+    };
+    var closeModal = function () {
+      if (!modal) return;
+      modal.removeAttribute('data-open'); modal.setAttribute('aria-hidden', 'true');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+    var resetSheet = function () {
+      snap.forEach(function (s) {
+        ATTRS.forEach(function (n) { if (Object.prototype.hasOwnProperty.call(s.a, n)) s.el.setAttribute(n, s.a[n]); else s.el.removeAttribute(n); });
+        if (s.t !== null) s.el.querySelector('.gt-t').textContent = s.t;
+      });
+      inputs.forEach(function (i) {
+        if (i.tagName === 'SELECT') { var k = 0; Array.prototype.forEach.call(i.options, function (o, ix) { if (o.defaultSelected) k = ix; }); i.selectedIndex = k; }
+        else if (i.type === 'checkbox' || i.type === 'radio') i.checked = i.defaultChecked;
+        else i.value = i.defaultValue;
+      });
+      if (tbody) rows0.forEach(function (r) { tbody.appendChild(r); });
+      q('.gpg', sheet).forEach(pager);
+    };
+    var setBad = function (f, bad, msg) {
+      if (bad) f.setAttribute('data-bad', ''); else f.removeAttribute('data-bad');
+      var m = f.querySelector('.gf-m'); if (m && msg) m.textContent = msg;
+    };
+    var validate = function (inp) {
+      var f = inp.closest && inp.closest('.gf'); if (!f) return;
+      var v = inp.value.trim(), kind = f.getAttribute('data-v');
+      if (kind === 'email') setBad(f, !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v), v ? 'Please enter a valid email address' : 'Please enter your email address');
+      else if (kind === 'name') setBad(f, !/^[A-Za-z][A-Za-z' -]+$/.test(v), 'Are you sure this is your name?');
+    };
+    this.gelInput = function (e) { if (e.target && e.target.closest && e.target.closest('[data-gel-sheet]')) validate(e.target); };
+    this.gelClick = function (e) {
+      var t = e.target; if (!t || !t.closest) return;
+      var x;
+      if (t.closest('[data-gel-open]')) { openModal(); return; }
+      if (modal && (t === modal || t.closest('[data-gel-close]'))) { closeModal(); return; }
+      if (!sheet || !sheet.contains(t)) return;
+      if (!t.closest('.gpop')) closePops();
+      if (t.closest('[data-gel-reset]')) { resetSheet(); return; }
+      if ((x = t.closest('.gacc-h'))) {
+        var item = x.parentNode, wrap = item.parentNode, was = item.hasAttribute('data-open');
+        q('.gacc-i', wrap).forEach(function (i) { i.removeAttribute('data-open'); i.firstElementChild.setAttribute('aria-expanded', 'false'); });
+        if (!was) { item.setAttribute('data-open', ''); x.setAttribute('aria-expanded', 'true'); }
+        return;
+      }
+      if ((x = t.closest('.gt'))) {
+        var on = x.getAttribute('aria-checked') !== 'true';
+        x.setAttribute('aria-checked', on ? 'true' : 'false'); x.querySelector('.gt-t').textContent = on ? 'On' : 'Off';
+        return;
+      }
+      if ((x = t.closest('.gs button, .glg button'))) {
+        q('button', x.parentNode).forEach(function (b) { b.setAttribute('aria-pressed', b === x ? 'true' : 'false'); });
+        return;
+      }
+      if ((x = t.closest('.gpg button'))) {
+        var pg = x.parentNode, btns = q('button', pg), nums = btns.filter(function (b) { return /^\d+$/.test(b.textContent.trim()); });
+        var cur = nums.findIndex(function (b) { return b.getAttribute('aria-current') === 'page'; });
+        var nx = x === btns[0] ? cur - 1 : x === btns[btns.length - 1] ? cur + 1 : nums.indexOf(x);
+        nx = Math.max(0, Math.min(nums.length - 1, nx));
+        nums.forEach(function (b, i) { if (i === nx) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+        pager(pg);
+        return;
+      }
+      if ((x = t.closest('.gb[data-dd]'))) { if (x.hasAttribute('data-open')) x.removeAttribute('data-open'); else x.setAttribute('data-open', ''); return; }
+      if ((x = t.closest('.gpop > button'))) {
+        var p = x.parentNode, wasOpen = p.hasAttribute('data-open');
+        closePops();
+        if (!wasOpen) { p.setAttribute('data-open', ''); x.setAttribute('aria-expanded', 'true'); }
+        return;
+      }
+      if ((x = t.closest('.gal-x'))) { x.closest('.gal').setAttribute('data-gone', ''); return; }
+      if ((x = t.closest('.gpn-h'))) {
+        var pn = x.closest('.gpn');
+        if (pn.hasAttribute('data-closed')) pn.removeAttribute('data-closed'); else pn.setAttribute('data-closed', '');
+        x.setAttribute('aria-expanded', pn.hasAttribute('data-closed') ? 'false' : 'true');
+        return;
+      }
+      if ((x = t.closest('.gtb th button'))) {
+        var th = x.parentNode, tr = th.parentNode, table = th.closest('table'), idx = Array.prototype.indexOf.call(tr.children, th);
+        var asc = th.getAttribute('aria-sort') !== 'ascending';
+        q('th', tr).forEach(function (h2) { h2.removeAttribute('aria-sort'); });
+        th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+        var rows = q('tbody tr', table), num = /^\$/.test(rows[0].children[idx].textContent.trim());
+        rows.sort(function (a, b) {
+          var A = a.children[idx].textContent.trim(), B = b.children[idx].textContent.trim();
+          if (num) { A = parseFloat(A.slice(1)); B = parseFloat(B.slice(1)); return asc ? A - B : B - A; }
+          return asc ? A.localeCompare(B) : B.localeCompare(A);
+        });
+        var tb = table.querySelector('tbody'); rows.forEach(function (r) { tb.appendChild(r); });
+        return;
+      }
+      if ((x = t.closest('.gtb tbody tr'))) {
+        var was2 = x.getAttribute('aria-selected') === 'true';
+        q('tbody tr', x.closest('table')).forEach(function (r) { r.removeAttribute('aria-selected'); });
+        if (!was2) x.setAttribute('aria-selected', 'true');
+      }
+    };
+    this.gelKey = function (e) {
+      if (e.key === 'Escape') { closePops(); if (modal && modal.hasAttribute('data-open')) closeModal(); return; }
+      if (e.key === 'Tab' && modal && modal.hasAttribute('data-open')) {
+        var f = q('button', modal), first = f[0], last = f[f.length - 1];
+        if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('click', this.gelClick);
+    document.addEventListener('keydown', this.gelKey);
+    document.addEventListener('input', this.gelInput);
+    document.addEventListener('focusout', this.gelInput);
   }
   componentWillUnmount() {
+    document.removeEventListener('click', this.gelClick);
+    document.removeEventListener('keydown', this.gelKey);
+    document.removeEventListener('input', this.gelInput);
+    document.removeEventListener('focusout', this.gelInput);
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onScroll);
     document.removeEventListener('click', this.onClick);
